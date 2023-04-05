@@ -19,7 +19,7 @@
         else{
             if ($pass == $conformPass){
                 $queryRegister = "INSERT INTO register VALUES('', '$name', '$email','$phone','$dob',' $pass')";
-                $queryLogin = "INSERT INTO loginweb VALUES('', '$name','$pass')";
+                $queryLogin = "INSERT INTO loginweb VALUES('', '$email','$phone','$pass')";
                 mysqli_query($conn, $queryRegister);
                 mysqli_query($conn, $queryLogin);
                 echo ("thanh cong");

@@ -136,6 +136,7 @@
         $conn = mysqli_connect("localhost", "root", "", "pjweb");
         //paging - offset = (currentPage - 1) * itemHavePage;
         $itemOfPage = !empty($_GET['itemOfPage']) ? $_GET['itemOfPage']: 4;
+        // $itemOfPage = 1; //test btn next, prev, toFirstPage, toEndPage
         $currentPage = !empty($_GET['page']) ? $_GET['page']: 1;
         $offset = ($currentPage - 1) * $itemOfPage;
         $product = mysqli_query($conn, "SELECT * FROM `productofnewarrival` ORDER BY 'id' ASC LIMIT ".$itemOfPage." OFFSET ".$offset."");
@@ -193,16 +194,47 @@
     <div class="paging">
         <ul class="paging-lists">
             <?php
+                if ($currentPage > 3){
+            ?>
+                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=1"><=</a></li>
+            <?php
+                }
+            ?>
+            <?php
+                if ($currentPage > 1){
+            ?>
+                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$currentPage - 1?>"><<</a></li>
+            <?php
+                }
+            ?>
+            <?php
                 for ($i = 1; $i <= $totalPage; $i++) {
                     if ($i != $currentPage){
+                        if ($i > $currentPage - 3 && $i < $currentPage + 3){
             ?>
             <li class="paging-item" onclick="activeLink()" ><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$i?>"><?=$i?></a></li>
             <?php
-                    } else{
+                        }
+                    }
+                    else{
             ?>
             <li class="paging-item active-paging" ><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$i?>"><?=$i?></a></li>
             <?php
                     }
+                }
+            ?>
+            <?php
+                if ($currentPage < $totalPage - 1){
+            ?>
+                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$currentPage + 1?>">>></a></li>
+            <?php
+                }
+            ?>
+            <?php
+                if ($currentPage < $totalPage - 2){
+            ?>
+                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$totalPage?>">=></a></li>
+            <?php
                 }
             ?>
         </ul>
