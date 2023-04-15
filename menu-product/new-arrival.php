@@ -30,9 +30,21 @@
         <div class="search-box hide-search">
         <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
         <div class="search-buttons">
-            <input type="text" id="search-text">
-            <input type="submit" value="Search" id="search-btn" onclick="location.href='../search-result/search-result.html'">
+            <form action="../search-result/search-result.php" method="post">
+                <input type="text" id="search-text" name="content">
+                <input type="submit" value="Search" id="search-btn" name="searchBtn">
+            </form>
         </div>
+
+        <script>
+            const tagInput = document.getElementById('search-text');
+            const saveTagsBtn = document.getElementById('search-btn');
+            saveTagsBtn.addEventListener('click', () => {
+                localStorage.setItem('tag', tagInput.value);
+                // tagInput.value = '';
+            });
+        </script>
+
         <div class="advance-search">
             <select name="" id="categories">
                 <option value="default" selected disabled>Loại</option>

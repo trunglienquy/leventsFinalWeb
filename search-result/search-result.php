@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style-search-result.css">
+    <link rel="stylesheet" href="../menu-product/css/style-all-product.css">
     <link rel="stylesheet" href="../js/product-main.js">
     <title>Trang chủ - Levents</title>
 </head>
@@ -34,8 +35,10 @@
     <div class="search-box hide-search">
         <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
         <div class="search-buttons">
-            <input type="text" id="search-text">
-            <input type="submit" value="Search" id="search-btn">
+            <form action="../search-result/search-result.php" method="post">
+                <input type="text" id="search-text" name="content">
+                <input type="submit" value="Search" id="search-btn" name="searchBtn">
+            </form>
         </div>
         <div class="advance-search">
             <select name="" id="categories">
@@ -71,7 +74,7 @@
                             <a href="../menu-product/all-product.html">Tất cả</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/new-arrival.html">Sản phẩm mới</a>
+                            <a href="../menu-product/new-arrival.php">Sản phẩm mới</a>
                         </li>
                         <li class="dropdown-menu-item">
                             <a href="../menu-product/tee-shirt.html">Áo thun</a>
@@ -124,134 +127,124 @@
 
     <!-- SEARCH RESULT -->
 
+    <script>
+        var myValue = localStorage.getItem('tag')
+    </script>
+
+    <?php
+    $conn = mysqli_connect("localhost", "root", "", "pjweb");
+
+    if ( isset($_POST['searchBtn'])){
+        $content = $_POST['content'];
+    }
+    else {
+        $test = "<script>document.write(localStorage.getItem('tag'));</script>";
+        $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $test); // Remove any <script> tags from $test
+    }
+    // $test ="<script>document.write(localStorage.getItem('tag'));</script>";
+    // $content = "<script>document.write(localStorage.getItem('tag'));</script>";
+    // $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $test);
+    $stmt = "SELECT * FROM allProduct WHERE nameProduct LIKE '%".$content."%'";
+    $query_stmt = mysqli_query($conn, $stmt);
+    ?>
+
     <div class="container" style="margin-top: 50px;">
         <div class="results-search">
-            <p class="title-result">Kết quả tìm kiếm cho: &nbsp;</p>
-            <p id="result-final">áo thun</p>
+        <p class="title-result">Kết quả tìm kiếm cho: &nbsp;</p> 
+        <?php 
+            echo "<script>document.write(localStorage.getItem('tag'));</script>";
+        ?>
         </div>
     </div>
 
+
+    <?php
+        // session_start();
+        $conn = mysqli_connect("localhost", "root", "", "pjweb");
+        //paging - offset = (currentPage - 1) * itemHavePage;
+        $itemOfPage = !empty($_GET['itemOfPage']) ? $_GET['itemOfPage']: 4;
+        // $itemOfPage = 1; //test btn next, prev, toFirstPage, toEndPage
+        $currentPage = !empty($_GET['page']) ? $_GET['page']: 1;
+        $offset = ($currentPage - 1) * $itemOfPage;
+        $product = mysqli_query($conn, "SELECT * FROM `allProduct` WHERE `nameProduct` LIKE '%$content%' ORDER BY `idProduct` ASC LIMIT ".$itemOfPage." OFFSET ".$offset."");
+        //create paging
+        $totalProduct = mysqli_query($conn, $stmt);
+        $totalProduct = $totalProduct->num_rows;
+        //ceil dùng để làm tròn số trang
+        $totalPage = ceil($totalProduct / $itemOfPage);
+    ?>
+        
+    </div>
+
+
     <div class="product">
+        <?php
+            while ($row = mysqli_fetch_array($product)){
+        ?>
         <div class="product-row">
             <a href="../detail-product/tee-shirt-1.html">
                 <div class="product-item">
-                    <img src="../img/all1-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all1-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
+                    <img src="../<?php echo $row['imageFrontProduct']?>" alt="" class="product-item-back">
+                    <img src="../<?php echo $row['imageAfterProduct']?>" alt="" class="product-item-font">
+                    <h3 class="name-product-item"><?php echo $row['nameProduct']?></h3>
+                    <h3 class="price-product-item"><?php echo number_format($row['priceProduct'],0,',','.').' vnđ'?></h3>
                 </div>
             </a>
         </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all2-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all2-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all3-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all3-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all4-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all4-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all5-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all5-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all6-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all6-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all7-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all7-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all8-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all8-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all9-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all9-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all10-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all10-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all11-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all11-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
-        <div class="product-row">
-            <a href="../detail-product/tee-shirt-1.html">
-                <div class="product-item">
-                    <img src="../img/all12-bf.jpg" alt="" class="product-item-back">
-                    <img src="../img/all12-af.jpg" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - Không tên, bí ẩn</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
-                </div>
-            </a>
-        </div>
+        <?php
+            }
+        ?>
+    </div>
+
+    <!-- paging -->
+
+    <div class="paging">
+        <ul class="paging-lists">
+            <?php
+                if ($currentPage > 3){
+            ?>
+                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=1"><=</a></li>
+            <?php
+                }
+            ?>
+            <?php
+                if ($currentPage > 1){
+            ?>
+                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$currentPage - 1?>"><<</a></li>
+            <?php
+                }
+            ?>
+            <?php
+                for ($i = 1; $i <= $totalPage; $i++) {
+                    if ($i != $currentPage){
+                        if ($i > $currentPage - 3 && $i < $currentPage + 3){
+            ?>
+            <li class="paging-item" onclick="activeLink()" ><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$i?>"><?=$i?></a></li>
+            <?php
+                        }
+                    }
+                    else{
+            ?>
+            <li class="paging-item active-paging" ><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$i?>"><?=$i?></a></li>
+            <?php
+                    }
+                }
+            ?>
+            <?php
+                if ($currentPage < $totalPage - 1){
+            ?>
+                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$currentPage + 1?>">>></a></li>
+            <?php
+                }
+            ?>
+            <?php
+                if ($currentPage < $totalPage - 2){
+            ?>
+                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$totalPage?>">=></a></li>
+            <?php
+                }
+            ?>
+        </ul>
     </div>
 
 
