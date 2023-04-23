@@ -144,9 +144,15 @@
 
     <!-- INFORMATION PRODUCT -->
 
+    <?php
+        $conn = mysqli_connect("localhost", "root", "", "pjweb");
+        $product = mysqli_query($conn, "SELECT * FROM `productofnewarrival` WHERE id = ". $_GET['id']);
+        $result = mysqli_fetch_assoc($product);
+    ?>
+
     <div class="container-product">
         <div class="img-product">
-            <img src="../img/all1-bf.jpg" alt="" id="productImg">
+            <img src="../<?= $result['image_before']?>" alt="" id="productImg">
             <div class="small-image-product">
                 <img src="./img/child1.jpg" alt="" width="100%" class="small-product-child">
                 <img src="./img/child2.jpg" alt="" width="100%" class="small-product-child">

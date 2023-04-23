@@ -162,7 +162,7 @@
         // session_start();
         $conn = mysqli_connect("localhost", "root", "", "pjweb");
         //paging - offset = (currentPage - 1) * itemHavePage;
-        $itemOfPage = !empty($_GET['itemOfPage']) ? $_GET['itemOfPage']: 4;
+        $itemOfPage = !empty($_GET['itemOfPage']) ? $_GET['itemOfPage']: 8;
         // $itemOfPage = 1; //test btn next, prev, toFirstPage, toEndPage
         $currentPage = !empty($_GET['page']) ? $_GET['page']: 1;
         $offset = ($currentPage - 1) * $itemOfPage;

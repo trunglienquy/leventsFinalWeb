@@ -10,7 +10,7 @@
 </head>
 <body>
     <!-- MENU -->
-
+    
     <div class="navbar">
         <div class="menu-mobile">
             <ion-icon name="menu-outline"></ion-icon>
@@ -23,7 +23,15 @@
             <ul class="navbar-icon_lists">
                 <li class="navbar-icon_item navbar-icon_search"><a href="#"><ion-icon name="search-outline"></ion-icon></a></li>
                 <li class="navbar-icon_item navbar-icon_bag"><a href="#"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item"><a href="./login.html"><ion-icon name="person-outline"></ion-icon></a></li>
+                <?php
+                include 'login.php';
+                    if (isset($_SESSION['test']) && ($_SESSION['test'] != "")){
+                        echo '<li class="navbar-icon_item"><a href="./profile.php"><ion-icon name="person-outline"></ion-icon></a></li>';
+                    }
+                    else{
+                        echo '<li class="navbar-icon_item"><a href="./login.html"><ion-icon name="person-outline"></ion-icon></a></li>';
+                    }
+                ?>
             </ul>
         </div>
     </div>

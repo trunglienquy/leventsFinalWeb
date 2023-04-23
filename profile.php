@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style-all-product.css">
-    <link rel="stylesheet" href="../js/product-main.js">
-    <title>Sản phẩm mới - Levents</title>
+    <!-- attention -->
+    <link rel="stylesheet" href="./css/style-profile.css">
+    <link rel="stylesheet" href="./js/product-main.js">
+    <title>Trang chủ - Levents</title>
 </head>
 <body>
 
     <!-- MENU -->
-
+    <?php
+        include "login.php";
+    ?>
     <div class="navbar">
         <div class="menu-mobile">
             <ion-icon name="menu-outline"></ion-icon>
@@ -19,61 +22,23 @@
         <div class="menu-mobile-close menu-mobile">
             <ion-icon name="close-outline"></ion-icon>
         </div>
-        <div class="navbar-logo"><a href="../home.html"><img src="../img/logo.png" alt=""></a></div>
+        <!-- attention -->
+        <div class="navbar-logo"><a href="#"><img src="./img/logo.png" alt=""></a></div>
         <div class="navbar-icon">
             <ul class="navbar-icon_lists">
                 <li class="navbar-icon_item navbar-icon_search"><a href="#"><ion-icon name="search-outline"></ion-icon></a></li>
                 <li class="navbar-icon_item navbar-icon_bag"><a href="#"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item"><a href="../login.html"><ion-icon name="person-outline"></ion-icon></a></li>
+                <li class="navbar-icon_item"><a href="#"><ion-icon name="person-outline"></ion-icon></a></li>
             </ul>
         </div>
-        <div class="search-box hide-search">
-        <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
-        <div class="search-buttons">
-            <form action="../search-result/search-result.php" method="post">
-                <input type="text" id="search-text" name="content">
-                <input type="submit" value="Search" id="search-btn" name="searchBtn">
-            </form>
-        </div>
-
-        <script>
-            const tagInput = document.getElementById('search-text');
-            const saveTagsBtn = document.getElementById('search-btn');
-            saveTagsBtn.addEventListener('click', () => {
-                localStorage.setItem('tag', tagInput.value);
-                // tagInput.value = '';
-            });
-        </script>
-
-        <div class="advance-search">
-            <select name="" id="categories">
-                <option value="default" selected disabled>Loại</option>
-                <option value="all" class="col-op">Tất cả</option>
-                <option value="new" class="col-op">Sản phẩm mới</option>
-                <option value="tee" class="col-op">Áo thun</option>
-                <option value="pant" class="col-op">Quần</option>
-                <option value="balo" class="col-op">Ba lô</option>
-                <option value="outwear" class="col-op">Áo khoác</option>
-                <option value="pk" class="col-op">Phụ kiện </option>
-            </select>
-            <select name="" id="price">
-                <option value="default" class="col-op">Giá</option>
-                <option value="100" class="col-op">Dưới 100.000 vnđ</option>
-                <option value="100+" class="col-op">Từ 200.000 vnđ - 500.000 vnđ</option>
-                <option value="100++" class="col-op">Trên 500.000 vnđ</option>
-            </select>
-            <button id="submitAdvance">Xác nhận</button>
-        </div>
-    </div>
     </div>
 
     <!-- SEARCH-BOX -->
-
     <div class="search-box hide-search">
         <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
         <div class="search-buttons">
             <input type="text" id="search-text">
-            <input type="submit" value="Search" id="search-btn" onclick="location.href='../search-result/search-result.html'">
+            <input type="submit" value="Search" id="search-btn">
         </div>
     </div>
 
@@ -81,31 +46,31 @@
 
     <div class="navbar-menu" id="navbar-menu-mobile">
         <ul class="navbar-menu_lists">
-            <li class="navbar-menu_item navbar-menu_item-dropdown"><a href="../menu-product/all-product.html">Shop</a> 
+            <li class="navbar-menu_item navbar-menu_item-dropdown"><a href="#">Shop</a> 
                 <ion-icon class="arrow-down" id="btn-dropdown-down" name="chevron-down-outline"></ion-icon>
                 <ion-icon class="arrow-up" name="chevron-up-outline"></ion-icon>
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-lists">
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/all-product.html">Tất cả</a>
+                            <a href="#">Tất cả</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/new-arrival.html">New Arrival</a>
+                            <a href="#">New Arrival</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/tee-shirt.html">Áo thun</a>
+                            <a href="#">Áo thun</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/pant.html">Quần</a>
+                            <a href="#">Quần</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/balo.html">Ba-lo</a>
+                            <a href="#">Ba-lo</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/outwear.html">Outwear</a>
+                            <a href="#">Outwear</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/pk.html">Phụ kiện</a>
+                            <a href="#">Phụ kiện</a>
                         </li>
                     </ul>
                 </div>
@@ -135,57 +100,19 @@
                     </ul>
                 </div> -->
             </li>
-            <li class="navbar-menu_item navbar-menu_item-underline navbar-menu_item-active"><a href="../navbar-sale-off/sale-off.html">Sale-off</a></li>
-            <li class="navbar-menu_item navbar-menu_item-underline"><a href="../navbar-collection/collection.html">Bộ sưu tập</a></li>
-            <li class="navbar-menu_item navbar-menu_item-underline"><a href="../navbar-about/about.html">Về chúng tôi</a></li>
+            <li class="navbar-menu_item navbar-menu_item-underline navbar-menu_item-active"><a href="#">Sale-off</a></li>
+            <li class="navbar-menu_item navbar-menu_item-underline"><a href="#">Collection</a></li>
+            <li class="navbar-menu_item navbar-menu_item-underline"><a href="#">About</a></li>
         </ul>
     </div>
 
-    <!-- PRODUCT -->
-
-    <?php
-        // session_start();
-        $conn = mysqli_connect("localhost", "root", "", "pjweb");
-        //paging - offset = (currentPage - 1) * itemHavePage;
-        $itemOfPage = !empty($_GET['itemOfPage']) ? $_GET['itemOfPage']: 8;
-        // $itemOfPage = 1; //test btn next, prev, toFirstPage, toEndPage
-        $currentPage = !empty($_GET['page']) ? $_GET['page']: 1;
-        $offset = ($currentPage - 1) * $itemOfPage;
-        $product = mysqli_query($conn, "SELECT * FROM `productofnewarrival` ORDER BY 'id' ASC LIMIT ".$itemOfPage." OFFSET ".$offset."");
-        //create paging
-        $totalProduct = mysqli_query($conn, "SELECT * FROM `productofnewarrival`");
-        $totalProduct = $totalProduct->num_rows;
-        //ceil dùng để làm tròn số trang
-        $totalPage = ceil($totalProduct / $itemOfPage);
-    ?>
-
-    <h2 class="name-intro">SẢN PHẨM MỚI</h2>
-    <div class="product">
-
-        <?php
-            while ($conn = mysqli_fetch_array($product)) {
-        ?>
-        <div class="product-row">
-            <a href="../detail-product/detail-product.php?id=<?=$conn['id'] ?>">
-                <div class="product-item">
-                    <img src="../<?=$conn['image_before'] ?>" alt="" class="product-item-back">
-                    <img src="../<?=$conn['image_after'] ?>" alt="" class="product-item-font">
-                    <h3 class="name-product-item"><?=$conn['name'] ?></h3>
-                    <h3 class="price-product-item"><?=$conn['price'] ?></h3>
-                </div>
-            </a>
-        </div>
-        <?php
-            }
-        ?>
-        
-    </div>
+    
     <!-- ADD-TO-CARD -->
 
     <div class="container-add-to-cart hide-add-to-card" id="show-itemBag">
         <div class="title-atc">
-            <h3 class="name-cart">Giỏ Hàng</h3>
-            <p class="close-atc">Đóng</p>
+            <h3 class="name-cart">Gỏi Hàng</h3>
+            <p class="close-atc">Close</p>
         </div>
         <div class="notification-bag">
             <p class="information-notification">Hiện tại bạn không có đơn hàng nào</p>
@@ -201,57 +128,52 @@
         </div>
     </div>
 
-    <!-- PAGING -->
-
-    <div class="paging">
-        <ul class="paging-lists">
-            <?php
-                if ($currentPage > 3){
-            ?>
-                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=1"><=</a></li>
-            <?php
-                }
-            ?>
-            <?php
-                if ($currentPage > 1){
-            ?>
-                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$currentPage - 1?>"><<</a></li>
-            <?php
-                }
-            ?>
-            <?php
-                for ($i = 1; $i <= $totalPage; $i++) {
-                    if ($i != $currentPage){
-                        if ($i > $currentPage - 3 && $i < $currentPage + 3){
-            ?>
-            <li class="paging-item" onclick="activeLink()" ><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$i?>"><?=$i?></a></li>
-            <?php
-                        }
-                    }
-                    else{
-            ?>
-            <li class="paging-item active-paging" ><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$i?>"><?=$i?></a></li>
-            <?php
-                    }
-                }
-            ?>
-            <?php
-                if ($currentPage < $totalPage - 1){
-            ?>
-                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$currentPage + 1?>">>></a></li>
-            <?php
-                }
-            ?>
-            <?php
-                if ($currentPage < $totalPage - 2){
-            ?>
-                <li class="paging-item"><a href="?itemOfPage=<?=$itemOfPage?>&page=<?=$totalPage?>">=></a></li>
-            <?php
-                }
-            ?>
-        </ul>
+    <!-- main -->
+    
+    <div class="container">
+        <div class="main-left">
+            <div class="profile-user">
+                <div class="profile-user-image">
+                    <img src="https://levents.asia/wp-content/uploads/l60Hf-150x150.png" alt="">
+                </div>
+                <div class="profile-user-information">
+                    <h3>
+                        <?php
+                            echo $_SESSION['test'];
+                        ?>
+                     </h3>
+                    <p class="email-user">abc@gmail.com</p>
+                </div>
+            </div>
+            <div class="profile-user-link">
+                <ul class="list-link">
+                    <li class="list-link-item col"><a href="#">Thông tin cá nhân</a></li>
+                    <li class="list-link-item col"><a href="#">Sổ địa chỉ</a></li>
+                    <li class="list-link-item col"><a href="#">Đơn hàng của tôi</a></li>
+                    <li class="list-link-item col"><a href="#">Đăng xuất</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="main-right">
+            <h2 class="title-main-right">Thông tin cá nhân</h2>
+            <div class="col-main-right">
+                <h3 class="col1">Họ và tên</h3>
+                <p class="col1">Test</p>
+            </div>
+            <div class="col-main-right">
+                <h3 class="col1">Email</h3>
+                <p class="col1">Test</p>
+            </div>
+            <div class="col-main-right">
+                <h3 class="col1">Số điện thoại</h3>
+                <p class="col1">Test</p>
+            </div>
+            <div class="col-main-right">
+                <h3 class="col1">Ngày sinh</h3>
+                <p class="col1">Test</p>
+            </div>
+        </div>
     </div>
-
     <!-- FOOTER -->
 
     <footer>
@@ -352,10 +274,10 @@
                             <p class="title-light title-boid-size">Blog</p>
                         </li>
                         <li class="contract-detail social-media">
-                            <a href="https://www.facebook.com/profile.php?id=100010803722460"><ion-icon name="logo-facebook"></ion-icon></a>
-                            <a href="https://www.instagram.com/minhtrung_sler/"><ion-icon name="logo-instagram"></ion-icon></a>
-                            <a href="https://www.tiktok.com/@09062003hn"><ion-icon name="logo-tiktok"></ion-icon></a>
-                            <a href="https://www.youtube.com/channel/UCDOHmjIGsiF64GNKpPP_9lw"><ion-icon name="logo-youtube"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-tiktok"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
                         </li>
                 </div>
             </div>
@@ -363,7 +285,7 @@
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="../js/addCard.js"></script>
-    <script src="../js/searchMain.js"></script>
+    <script src="./js/addCard.js"></script>
+    <script src="./js/searchMain.js"></script>
 </body>
 </html>
