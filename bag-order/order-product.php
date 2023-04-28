@@ -5,16 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- attention -->
-    <link rel="stylesheet" href="./css/style-profile.css">
-    <link rel="stylesheet" href="./js/product-main.js">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../js/product-main.js">
     <title>Trang chủ - Levents</title>
 </head>
 <body>
 
     <!-- MENU -->
-    <?php
-        include "login.php";
-    ?>
+
     <div class="navbar">
         <div class="menu-mobile">
             <ion-icon name="menu-outline"></ion-icon>
@@ -34,6 +32,7 @@
     </div>
 
     <!-- SEARCH-BOX -->
+
     <div class="search-box hide-search">
         <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
         <div class="search-buttons">
@@ -105,74 +104,7 @@
             <li class="navbar-menu_item navbar-menu_item-underline"><a href="#">About</a></li>
         </ul>
     </div>
-    
-    <!-- ADD-TO-CARD -->
 
-    <div class="container-add-to-cart hide-add-to-card" id="show-itemBag">
-        <div class="title-atc">
-            <h3 class="name-cart">Gỏi Hàng</h3>
-            <p class="close-atc">Close</p>
-        </div>
-        <div class="notification-bag">
-            <p class="information-notification">Hiện tại bạn không có đơn hàng nào</p>
-        </div>
-        <div class="atc-bag"></div>
-        <div class="pay-product">
-            <button type="submit" class="pay-btn">Thanh toán</button>
-            <p class="notification-pay hide-notification-pay"> <i>Bạn chưa có sản phẩm nào trong giỏ hàng!</i> </p>
-        </div>
-        <div class="total-atc">
-            <h3 class="needPay"></h3>
-            <h3 class="total-product">Tổng: &nbsp;</h3>
-        </div>
-    </div>
-
-    <!-- main -->
-    
-    <div class="container">
-        <div class="main-left">
-            <div class="profile-user">
-                <div class="profile-user-image">
-                    <img src="https://levents.asia/wp-content/uploads/l60Hf-150x150.png" alt="">
-                </div>
-                <div class="profile-user-information">
-                    <h3>
-                        <?php
-                            echo $_SESSION['test'];
-                        ?>
-                     </h3>
-                    <p class="email-user">abc@gmail.com</p>
-                </div>
-            </div>
-            <div class="profile-user-link">
-                <ul class="list-link">
-                    <li class="list-link-item col"><a href="#">Thông tin cá nhân</a></li>
-                    <li class="list-link-item col"><a href="#">Sổ địa chỉ</a></li>
-                    <li class="list-link-item col"><a href="#">Đơn hàng của tôi</a></li>
-                    <li class="list-link-item col"><a href="#">Đăng xuất</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="main-right">
-            <h2 class="title-main-right">Thông tin cá nhân</h2>
-            <div class="col-main-right">
-                <h3 class="col1">Họ và tên</h3>
-                <p class="col1"><?php echo $_SESSION['name-info']?></p>
-            </div>
-            <div class="col-main-right">
-                <h3 class="col1">Email</h3>
-                <p class="col1"><?php echo $_SESSION['name-email']?></p>
-            </div>
-            <div class="col-main-right">
-                <h3 class="col1">Số điện thoại</h3>
-                <p class="col1"><?php echo $_SESSION['name-numberphone']?></p>
-            </div>
-            <div class="col-main-right">
-                <h3 class="col1">Ngày sinh</h3>
-                <p class="col1"><?php echo $_SESSION['name-birthday']?></p>
-            </div>
-        </div>
-    </div>
     <!-- FOOTER -->
 
     <footer>
@@ -284,7 +216,6 @@
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="./js/addCard.js"></script>
-    <script src="./js/searchMain.js"></script>
+    <script src="../js/searchMain.js"></script>
 </body>
 </html>

@@ -133,7 +133,7 @@
         </div>
         <div class="atc-bag"></div>
         <div class="pay-product">
-            <button type="submit" class="pay-btn">Thanh toán</button>
+            <button type="submit" class="pay-btn" name="submit-order">Thanh toán</button>
             <p class="notification-pay hide-notification-pay"> <i>Bạn chưa có sản phẩm nào trong giỏ hàng!</i> </p>
         </div>
         <div class="total-atc">
@@ -163,8 +163,8 @@
             </div>
         </div>
         <div class="detail-product">
-            <div class="col-product boil-title name-product"> <h3>LEVENTS® | DORAEMON phổ biến "mèo" áo thun</h3> </div>
-            <div class="col-product light-title price-product" id="price"> <h3>395,000 vnđ</h3> </div>
+            <div class="col-product boil-title name-product"> <h3><?= $result['name']?></h3> </div>
+            <div class="col-product light-title price-product" id="price"> <h3><?= $result['price']?></h3> </div>
             <div class="col-product light-title color-product">
                 <p>Màu sắc: Đen</p>
             </div>
@@ -180,7 +180,7 @@
             </div>
             <div class="col-product light-title amount-product"></div>
             <div class="col-product light-title buy-product">
-                <button type="submit" class="button-submit">Thêm vào giỏ</button>
+                <button type="submit" class="button-submit" name="submit-order">Thêm vào giỏ</button>
             </div>
             <div class="notification-buy hide-notification-buy">
                 <p> <i> Bạn đã thêm sản phẩm này vào giỏ hàng! </i> </p>

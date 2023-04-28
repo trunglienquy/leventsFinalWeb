@@ -4,11 +4,15 @@
         $name = $_POST["name"];
         $pass = $_POST["password"];
         $exist = mysqli_query($conn, "SELECT * FROM loginweb WHERE (name_user = '$name' OR phone_user = '$name') AND password_user = '$pass'");
-        $getInfoUser = mysqli_query($conn, "SELECT * FROM register WHERE user_name = '$name' AND user_password = '$pass'");
+        $getInfoUser = mysqli_query($conn, "SELECT * FROM register WHERE user_email = '$name' AND user_password = $pass");
         $element = mysqli_fetch_array($getInfoUser);
-        echo $element['user_name'];
         if (mysqli_num_rows($exist) > 0){
             $_SESSION['test'] = $name;
+            $_SESSION['name-info'] = $element['user_name'];
+            $_SESSION['name-email'] = $element['user_email'];
+            $_SESSION['name-numberphone'] = $element['user_numberphone'];
+            $_SESSION['name-birthday'] = $element['user_birthday'];
+            $_SESSION['name-id'] = $element['id_user'];
             header('location: home.php');
         }
         else{
