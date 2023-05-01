@@ -146,13 +146,14 @@
 
     <?php
         $conn = mysqli_connect("localhost", "root", "", "pjweb");
-        $product = mysqli_query($conn, "SELECT * FROM `productofnewarrival` WHERE id = ". $_GET['id']);
+        echo $_GET['id'];
+        $product = mysqli_query($conn, "SELECT * FROM `allproduct` WHERE idProduct = ". $_GET['id']);
         $result = mysqli_fetch_assoc($product);
     ?>
 
     <div class="container-product">
         <div class="img-product">
-            <img src="../<?= $result['image_before']?>" alt="" id="productImg">
+            <img src="../<?= $result['imageFrontProduct']?>" alt="" id="productImg">
             <div class="small-image-product">
                 <img src="./img/child1.jpg" alt="" width="100%" class="small-product-child">
                 <img src="./img/child2.jpg" alt="" width="100%" class="small-product-child">
@@ -163,8 +164,8 @@
             </div>
         </div>
         <div class="detail-product">
-            <div class="col-product boil-title name-product"> <h3><?= $result['name']?></h3> </div>
-            <div class="col-product light-title price-product" id="price"> <h3><?= $result['price']?></h3> </div>
+            <div class="col-product boil-title name-product"> <h3><?= $result['nameProduct']?></h3> </div>
+            <div class="col-product light-title price-product" id="price"> <h3><?= $result['priceProduct']?></h3> </div>
             <div class="col-product light-title color-product">
                 <p>Màu sắc: Đen</p>
             </div>

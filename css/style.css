@@ -300,6 +300,48 @@ body{
     z-index: -1;
 }
 
+/* PAGING */
+.paging{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 500px;
+    margin: 10rem 0;
+}
+.paging-lists{
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.paging-item{
+    text-align: center;
+    line-height: 35px;
+    margin: 0 10px;
+    font-size: 15px;
+    width: 35px;
+    height: 35px;
+    border: 1px solid #000;
+}
+.paging-item:hover,
+.paging-item:hover a{
+    color: #fff;
+    background-color: #000;
+}
+.btn-paging{
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background-color: #fff;
+    margin: 0 30px;
+    cursor: pointer;
+}
+.active-paging,
+.active-paging a{
+    background-color: #000;
+    color: #fff;
+
+}
 /* PRODUCT */
 
 .name-intro{

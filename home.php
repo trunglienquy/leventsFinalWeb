@@ -78,7 +78,7 @@
                             <a href="./menu-product/all-product.html">Tất cả</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="./menu-product/new-arrival.html">Sản phẩm mới</a>
+                            <a href="./menu-product/new-arrival.php">Sản phẩm mới</a>
                         </li>
                         <li class="dropdown-menu-item">
                             <a href="./menu-product/tee-shirt.html">Áo thun</a>
