@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/styleFP.css">
+    <!-- attention -->
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../js/product-main.js">
-    <title>Tất cả - Levents</title>
+    <title>Trang chủ - Levents</title>
 </head>
+
 <body>
+
+    <?php
+    require("orderWait.php");
+    ?>
 
     <!-- MENU -->
 
@@ -19,12 +26,13 @@
         <div class="menu-mobile-close menu-mobile">
             <ion-icon name="close-outline"></ion-icon>
         </div>
-        <div class="navbar-logo"><a href="../home.html"><img src="../img/logo.png" alt=""></a></div>
+        <!-- attention -->
+        <div class="navbar-logo"><a href="../home.php"><img src="../img/logo.png" alt=""></a></div>
         <div class="navbar-icon">
             <ul class="navbar-icon_lists">
                 <li class="navbar-icon_item navbar-icon_search"><a href="#"><ion-icon name="search-outline"></ion-icon></a></li>
                 <li class="navbar-icon_item navbar-icon_bag"><a href="#"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item"><a href="../login.html"><ion-icon name="person-outline"></ion-icon></a></li>
+                <li class="navbar-icon_item"><a href="#"><ion-icon name="person-outline"></ion-icon></a></li>
             </ul>
         </div>
     </div>
@@ -35,26 +43,7 @@
         <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
         <div class="search-buttons">
             <input type="text" id="search-text">
-            <input type="submit" value="Search" id="search-btn" onclick="location.href='../search-result/search-result.html'">
-        </div>
-        <div class="advance-search">
-            <select name="" id="categories">
-                <option value="default" selected disabled>Loại</option>
-                <option value="all" class="col-op">Tất cả</option>
-                <option value="new" class="col-op">Sản phẩm mới</option>
-                <option value="tee" class="col-op">Áo thun</option>
-                <option value="pant" class="col-op">Quần</option>
-                <option value="balo" class="col-op">Ba lô</option>
-                <option value="outwear" class="col-op">Áo khoác</option>
-                <option value="pk" class="col-op">Phụ kiện </option>
-            </select>
-            <select name="" id="price">
-                <option value="default" class="col-op">Giá</option>
-                <option value="100" class="col-op">Dưới 100.000 vnđ</option>
-                <option value="100+" class="col-op">Từ 200.000 vnđ - 500.000 vnđ</option>
-                <option value="100++" class="col-op">Trên 500.000 vnđ</option>
-            </select>
-            <button id="submitAdvance">Xác nhận</button>
+            <input type="submit" value="Search" id="search-btn">
         </div>
     </div>
 
@@ -62,31 +51,31 @@
 
     <div class="navbar-menu" id="navbar-menu-mobile">
         <ul class="navbar-menu_lists">
-            <li class="navbar-menu_item navbar-menu_item-dropdown"><a href="../menu-product/all-product.html">Shop</a> 
+            <li class="navbar-menu_item navbar-menu_item-dropdown"><a href="#">Shop</a>
                 <ion-icon class="arrow-down" id="btn-dropdown-down" name="chevron-down-outline"></ion-icon>
                 <ion-icon class="arrow-up" name="chevron-up-outline"></ion-icon>
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-lists">
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/all-product.html">Tất cả</a>
+                            <a href="#">Tất cả</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/new-arrival.html">New Arrival</a>
+                            <a href="../menu-product/new-arrival.php">New Arrival</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/tee-shirt.html">Áo thun</a>
+                            <a href="#">Áo thun</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/pant.html">Quần</a>
+                            <a href="#">Quần</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/balo.html">Ba-lo</a>
+                            <a href="#">Ba-lo</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/outwear.html">Outwear</a>
+                            <a href="#">Outwear</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/pk.html">Phụ kiện</a>
+                            <a href="#">Phụ kiện</a>
                         </li>
                     </ul>
                 </div>
@@ -116,84 +105,77 @@
                     </ul>
                 </div> -->
             </li>
-            <li class="navbar-menu_item navbar-menu_item-underline navbar-menu_item-active"><a href="../navbar-sale-off/sale-off.html">Sale-off</a></li>
-            <li class="navbar-menu_item navbar-menu_item-underline"><a href="../navbar-collection/collection.html">Bộ sưu tập</a></li>
-            <li class="navbar-menu_item navbar-menu_item-underline"><a href="../navbar-about/about.html">Về chúng tôi</a></li>
+            <li class="navbar-menu_item navbar-menu_item-underline navbar-menu_item-active"><a href="#">Sale-off</a></li>
+            <li class="navbar-menu_item navbar-menu_item-underline"><a href="#">Collection</a></li>
+            <li class="navbar-menu_item navbar-menu_item-underline"><a href="#">About</a></li>
         </ul>
     </div>
 
-    <!-- final - pay -->
+    <h3 class="titleBag">GIỎ HÀNG</h3>
 
-    <div class="container-pay">
-        <div class="left-container">
-            <h2 class="title-brand col1">LEVENTS</h2>
-            <p class="title-pay col1">Cảm ơn bạn đã mua hàng</p>
-            <p class="sub1 col1">Xin chào user1, Chúng tôi đã nhận được đặt hàng của bạn và đã sẵn sàng để vận chuyển.</p>
-            <div class="line col2"></div>
-
-            <div class="info-user">
-                <h2 class="title-info title-detail col1">Thông tin khách hàng</h2>
-                <p class="name-info info col1"> <strong>Họ và Tên:</strong>  user1</p>
-                <p class="email-info info col1"> <strong>Email:</strong>  user1@gmail.com</p>
-                <p class="address-info info col1"> <strong>Địa chỉ:</strong>  123 Đồng Tâm, Tân Xuân, Hóc Môn, TP.HCM</p>
-                <p class="phone-info info col1"> <strong>SĐT:</strong> 0364781722</p>
-                <p class="note-info info col1"> <strong>Ghi chú:</strong>  nhận hàng vào t2 lúc 19h</p>
-                <p class="pay-what info col1"> <strong>Phương thức thanh toán:</strong>  Thanh toán khi giao hàng (COD)</p>
-                <p class="pay-arrive info col1"> <strong>Phương thức vận chuyển:</strong>  SHIP 1 - 2 ngày</p>
-            </div>
-        </div>
-        <div class="right-container">
-            <h2 class="title-detail">Thông tin đơn hàng</h2>
-            <div class="product-pay-final">
-                <div class="left-pr-final">
-                    <div class="detail-product-pay">
-                        <img src="../img/all1-bf.jpg" alt="">
-                        <p>LEVENTS® | DORAEMON phổ biến "mèo" áo thun</p>
+    <?php
+        $totalFinal = 0;
+    ?>
+    <div class="bag">
+        <table>
+            <tr>
+                <th>STT</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Size</th>
+                <th>Giá</th>
+                <th>Thành tiền</th>
+                <th>Quản lý</th>
+            </tr>
+            <?php
+                if (isset($_SESSION['cart1'])){
+                    $i = 0;
+                    foreach($_SESSION['cart1'] as $cart_item){
+                        $total = $cart_item['amount'] * $cart_item['pricePr'];
+                        $totalFinal += $total;
+                        $i++;
+            ?>
+            <tr>
+                <td><?php echo $i; ?></td>
+                <td><?php echo $cart_item['namePr']?></td>
+                <td class="flex-td">
+                    <div class="flex-td-col">
+                        <a href="./orderWait.php?add=<?php echo $cart_item['id'] ?>"><ion-icon name="add-outline"></ion-icon></a>
+                        <?php echo $cart_item['amount'] ?>
+                        <a href="./orderWait.php?sub=<?php echo $cart_item['id'] ?>"><ion-icon name="remove-outline"></ion-icon></a>
                     </div>
-                    <div class="price-product-pay">
-                        <p>395.000 vnđ</p>
-                    </div>
-                </div>
-                <div class="line col2"></div>
-
-                <div class="right-pr-final">
-                    <p class="col2">Tổng giá trị sản phẩm: 395.000 vnđ</p>
-                    <p class="col2">Khuyến mãi: 0 vnđ</p>
-                    <p class="col2">Phí vẫn chuyển: 35.000 vnđ</p>
-                    <div class="line col2"></div>
-                    <p class="col2">Tổng cộng: <strong>430.000 vnđ</strong></p>
-                </div>
-                <div class="see-back">
-                    <p><a href="../detail-product/tee-shirt-1.html">Xem lại đơn hàng</a></p>
-                    <p><a href="../home.html">Đến cửa hàng của chúng tôi</a></p>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    
-    <!-- ADD-TO-CARD -->
-
-    <div class="container-add-to-cart hide-add-to-card" id="show-itemBag">
-        <div class="title-atc">
-            <h3 class="name-cart">Giỏ Hàng</h3>
-            <p class="close-atc">Đóng</p>
-        </div>
-        <div class="notification-bag">
-            <p class="information-notification">Hiện tại bạn không có đơn hàng nào</p>
-        </div>
-        <div class="atc-bag"></div>
-        <div class="pay-product">
-            <button type="submit" class="pay-btn">Thanh toán</button>
-            <p class="notification-pay hide-notification-pay"> <i>Bạn chưa có sản phẩm nào trong giỏ hàng!</i> </p>
-        </div>
-        <div class="total-atc">
-            <h3 class="needPay"></h3>
-            <h3 class="total-product">Tổng: &nbsp;</h3>
+                    <span><i>Bạn có thể thay đổi số lượng sản phẩm của bạn</i></span>
+                </td>
+                <td>Size: <?php echo $cart_item['size']?></td>
+                <td><?php echo number_format($cart_item['pricePr'],0,',','.'). ' vnđ' ?></td>
+                <td><?php echo number_format($total,0,',','.'). ' vnđ'?></td>
+                <td><a href="./orderWait.php?remove=<?php echo $cart_item['id'] ?>" class="removeProduct">Xóa</a></td>
+            </tr>
+            <?php
+                    }
+                }
+                else{
+            ?>
+             <tr>
+                <td colspan="7"><p>Hiện tại giỏ hàng của bạn đang trống</p></td>
+            </tr>
+            <?php
+                }
+            ?>
+             <tr>
+                <td colspan="6">Tổng tiền</td>
+                <td><?php echo number_format($totalFinal,0,',','.'). ' vnđ' ?></td>
+            </tr>
+        </table>
+        <div class="removeAll">
+            <a href="./orderWait.php?removeall=1" class="removeProduct">Xóa tất cả</a>
         </div>
     </div>
 
-    
+
+    <div class="btnOrderConfirm">
+        <a href="../pay-product/pay.php"><input type="submit" value="Tiếp theo"></a>
+    </div>
 
     <!-- FOOTER -->
 
@@ -208,7 +190,8 @@
                     <br>
                     Mã số thuế: 8547618080
                     <br>
-                    Ngày cấp: 07/12/2020</p>
+                    Ngày cấp: 07/12/2020
+                </p>
             </div>
             <div class="introduce-store-right">
                 <div class="contract">
@@ -231,7 +214,7 @@
                         <li class="contract-detail">
                             <p class="title-light">Email Doanh Nghiệp</p>
                             <p class="title-boild title-boid-size">business@levents.asia</p>
-                        </li>        
+                        </li>
                     </ul>
                 </div>
                 <div class="store">
@@ -251,7 +234,7 @@
                         </li>
                         <li class="contract-detail">
                             <p class="title-light title-boid-size">54 Mậu Thân, Xuân Khánh, quận Ninh Kiều, Cần Thơ</p>
-                        </li>         
+                        </li>
                     </ul>
                 </div>
                 <div class="support">
@@ -277,10 +260,10 @@
                         </li>
                         <li class="contract-detail">
                             <p class="title-light title-boid-size">Chính sách bảo hành</p>
-                        </li>   
+                        </li>
                         <li class="contract-detail">
                             <p class="title-light title-boid-size">Chính sách khiếu nại</p>
-                        </li>      
+                        </li>
                     </ul>
                 </div>
                 <div class="expand">
@@ -295,10 +278,10 @@
                             <p class="title-light title-boid-size">Blog</p>
                         </li>
                         <li class="contract-detail social-media">
-                            <a href="https://www.facebook.com/profile.php?id=100010803722460"><ion-icon name="logo-facebook"></ion-icon></a>
-                            <a href="https://www.instagram.com/minhtrung_sler/"><ion-icon name="logo-instagram"></ion-icon></a>
-                            <a href="https://www.tiktok.com/@09062003hn"><ion-icon name="logo-tiktok"></ion-icon></a>
-                            <a href="https://www.youtube.com/channel/UCDOHmjIGsiF64GNKpPP_9lw"><ion-icon name="logo-youtube"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-tiktok"></ion-icon></a>
+                            <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
                         </li>
                 </div>
             </div>
@@ -306,7 +289,7 @@
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="../js/addCard.js"></script>
     <script src="../js/searchMain.js"></script>
 </body>
+
 </html>

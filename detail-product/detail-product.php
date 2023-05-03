@@ -9,6 +9,13 @@
 </head>
 <body>
 
+<?php
+    session_start();
+    if (isset($_GET['submit-order'])){
+        $_SESSION["test"] = $_GET["size-shirt"];
+    }
+?>
+
 <!-- MENU -->
 
     <div class="navbar">
@@ -123,7 +130,7 @@
 
     <!-- ADD-TO-CARD -->
 
-    <div class="container-add-to-cart hide-add-to-card" id="show-itemBag">
+    <!-- <div class="container-add-to-cart hide-add-to-card" id="show-itemBag">
         <div class="title-atc">
             <h3 class="name-cart">Giỏ Hàng</h3>
             <p class="close-atc" onclick="showBag()">Đóng</p>
@@ -140,15 +147,15 @@
             <h3 class="needPay"></h3>
             <h3 class="total-product">Tổng: &nbsp;</h3>
         </div>
-    </div>
+    </div> -->
 
     <!-- INFORMATION PRODUCT -->
 
     <?php
         $conn = mysqli_connect("localhost", "root", "", "pjweb");
-        echo $_GET['id'];
         $product = mysqli_query($conn, "SELECT * FROM `allproduct` WHERE idProduct = ". $_GET['id']);
         $result = mysqli_fetch_assoc($product);
+        $test = $_GET['id'];
     ?>
 
     <div class="container-product">
@@ -164,28 +171,24 @@
             </div>
         </div>
         <div class="detail-product">
-            <div class="col-product boil-title name-product"> <h3><?= $result['nameProduct']?></h3> </div>
-            <div class="col-product light-title price-product" id="price"> <h3><?= $result['priceProduct']?></h3> </div>
-            <div class="col-product light-title color-product">
-                <p>Màu sắc: Đen</p>
-            </div>
-            <div class="col-product light-title size-product">
-                <p>Size:</p>
-                <br>
-                <select name="size-shirt" id="size-shirt" onchange="getSelection();">
-                    <option value selected>SIZE 1</option>
-                    <option value="SIZE 2">SIZE 2</option>
-                    <option value="SIZE 3">SIZE 3</option>
-                    <option value="SIZE 4">SIZE 4</option>
-                </select>
-            </div>
-            <div class="col-product light-title amount-product"></div>
-            <div class="col-product light-title buy-product">
-                <button type="submit" class="button-submit" name="submit-order">Thêm vào giỏ</button>
-            </div>
-            <div class="notification-buy hide-notification-buy">
-                <p> <i> Bạn đã thêm sản phẩm này vào giỏ hàng! </i> </p>
-            </div>
+            <form action="./orderWait.php?id=<?php echo $test?>" method="post">
+                <div class="col-product boil-title name-product"> <input type="hidden" name="name"> <h3><?= $result['nameProduct']?></h3> </div>
+                <div class="col-product light-title price-product" id="price"> <h3><?= $result['priceProduct']?></h3> </div>
+                <div class="col-product light-title size-product">
+                    <p>Size:</p>
+                    <br>
+                    <select name="size-shirt" id="size-shirt" onchange="getSelection();">
+                        <option value="1" selected>SIZE 1</option>
+                        <option value="2">SIZE 2</option>
+                        <option value="3">SIZE 3</option>
+                        <option value="4">SIZE 4</option>
+                    </select>
+                </div>
+                <div class="col-product light-title amount-product"></div>
+                <div class="col-product light-title buy-product">
+                    <button type="submit" class="button-submit" name="submit-order">Thêm vào giỏ</button>
+                </div>
+            </form>
         </div>
     </div>
     <div class="container-detail">

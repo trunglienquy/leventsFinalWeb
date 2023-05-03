@@ -4,12 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- attention -->
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="./css/styleFP.css">
     <link rel="stylesheet" href="../js/product-main.js">
-    <title>Trang chủ - Levents</title>
+    <title>Tất cả - Levents</title>
 </head>
 <body>
+<?php
+    require "../detail-product/orderWait.php";
+    $conn = mysqli_connect("localhost", "root", "", "pjweb")
+    // require "../login.php";
+?>
 
     <!-- MENU -->
 
@@ -20,13 +24,12 @@
         <div class="menu-mobile-close menu-mobile">
             <ion-icon name="close-outline"></ion-icon>
         </div>
-        <!-- attention -->
-        <div class="navbar-logo"><a href="#"><img src="./img/logo.png" alt=""></a></div>
+        <div class="navbar-logo"><a href="../home.html"><img src="../img/logo.png" alt=""></a></div>
         <div class="navbar-icon">
             <ul class="navbar-icon_lists">
                 <li class="navbar-icon_item navbar-icon_search"><a href="#"><ion-icon name="search-outline"></ion-icon></a></li>
                 <li class="navbar-icon_item navbar-icon_bag"><a href="#"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item"><a href="#"><ion-icon name="person-outline"></ion-icon></a></li>
+                <li class="navbar-icon_item"><a href="../login.html"><ion-icon name="person-outline"></ion-icon></a></li>
             </ul>
         </div>
     </div>
@@ -37,7 +40,26 @@
         <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
         <div class="search-buttons">
             <input type="text" id="search-text">
-            <input type="submit" value="Search" id="search-btn">
+            <input type="submit" value="Search" id="search-btn" onclick="location.href='../search-result/search-result.html'">
+        </div>
+        <div class="advance-search">
+            <select name="" id="categories">
+                <option value="default" selected disabled>Loại</option>
+                <option value="all" class="col-op">Tất cả</option>
+                <option value="new" class="col-op">Sản phẩm mới</option>
+                <option value="tee" class="col-op">Áo thun</option>
+                <option value="pant" class="col-op">Quần</option>
+                <option value="balo" class="col-op">Ba lô</option>
+                <option value="outwear" class="col-op">Áo khoác</option>
+                <option value="pk" class="col-op">Phụ kiện </option>
+            </select>
+            <select name="" id="price">
+                <option value="default" class="col-op">Giá</option>
+                <option value="100" class="col-op">Dưới 100.000 vnđ</option>
+                <option value="100+" class="col-op">Từ 200.000 vnđ - 500.000 vnđ</option>
+                <option value="100++" class="col-op">Trên 500.000 vnđ</option>
+            </select>
+            <button id="submitAdvance">Xác nhận</button>
         </div>
     </div>
 
@@ -45,31 +67,31 @@
 
     <div class="navbar-menu" id="navbar-menu-mobile">
         <ul class="navbar-menu_lists">
-            <li class="navbar-menu_item navbar-menu_item-dropdown"><a href="#">Shop</a> 
+            <li class="navbar-menu_item navbar-menu_item-dropdown"><a href="../menu-product/all-product.html">Shop</a> 
                 <ion-icon class="arrow-down" id="btn-dropdown-down" name="chevron-down-outline"></ion-icon>
                 <ion-icon class="arrow-up" name="chevron-up-outline"></ion-icon>
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-lists">
                         <li class="dropdown-menu-item">
-                            <a href="#">Tất cả</a>
+                            <a href="../menu-product/all-product.html">Tất cả</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="#">New Arrival</a>
+                            <a href="../menu-product/new-arrival.html">New Arrival</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="#">Áo thun</a>
+                            <a href="../menu-product/tee-shirt.html">Áo thun</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="#">Quần</a>
+                            <a href="../menu-product/pant.html">Quần</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="#">Ba-lo</a>
+                            <a href="../menu-product/balo.html">Ba-lo</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="#">Outwear</a>
+                            <a href="../menu-product/outwear.html">Outwear</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="#">Phụ kiện</a>
+                            <a href="../menu-product/pk.html">Phụ kiện</a>
                         </li>
                     </ul>
                 </div>
@@ -99,11 +121,114 @@
                     </ul>
                 </div> -->
             </li>
-            <li class="navbar-menu_item navbar-menu_item-underline navbar-menu_item-active"><a href="#">Sale-off</a></li>
-            <li class="navbar-menu_item navbar-menu_item-underline"><a href="#">Collection</a></li>
-            <li class="navbar-menu_item navbar-menu_item-underline"><a href="#">About</a></li>
+            <li class="navbar-menu_item navbar-menu_item-underline navbar-menu_item-active"><a href="../navbar-sale-off/sale-off.html">Sale-off</a></li>
+            <li class="navbar-menu_item navbar-menu_item-underline"><a href="../navbar-collection/collection.html">Bộ sưu tập</a></li>
+            <li class="navbar-menu_item navbar-menu_item-underline"><a href="../navbar-about/about.html">Về chúng tôi</a></li>
         </ul>
     </div>
+
+    <!-- final - pay -->
+
+    <div class="container-pay">
+        <div class="left-container">
+            <h2 class="title-brand col1">LEVENTS</h2>
+            <p class="title-pay col1">Cảm ơn bạn đã mua hàng</p>
+            <p class="sub1 col1">Xin chào <b><i><?php echo $_SESSION['name-info']?></i></b> , Chúng tôi đã nhận được đặt hàng của bạn và đã sẵn sàng để vận chuyển.</p>
+            <div class="line col2"></div>
+
+            <div class="info-user">
+                <h2 class="title-info title-detail col1">Thông tin khách hàng</h2>
+                <p class="name-info info col1"> <strong>Họ và Tên:</strong>  <?php echo $_SESSION['name-info']?></p>
+                <p class="email-info info col1"> <strong>Email:</strong>  <?php echo $_SESSION['name-email']?></p>
+                <p class="address-info info col1"> <strong>Địa chỉ:</strong>  123 Đồng Tâm, Tân Xuân, Hóc Môn, TP.HCM</p>
+                <p class="phone-info info col1"> <strong>SĐT:</strong> <?php echo $_SESSION['name-email']?></p>
+                <?php
+                    if (isset($_GET['banking'])){
+                ?>
+                    <p class="pay-what info col1"> <strong>Phương thức thanh toán:</strong>  Thanh toán qua thẻ tín dụng</p>
+                    <p class="pay-arrive info col1"> <strong>Phương thức vận chuyển:</strong>  Nhận hàng 1 - 2 ngày</p>
+                <?php
+                    }else if (isset($_GET['cod'])){
+                ?>
+                    <p class="pay-what info col1"> <strong>Phương thức thanh toán:</strong>  Thanh toán khi giao hàng (COD)</p>
+                    <p class="pay-arrive info col1"> <strong>Phương thức vận chuyển:</strong>  Nhận hàng 1 - 2 ngày</p>
+                <?php
+                    }
+                ?>  
+            </div>
+        </div>
+        <?php
+            $totalFinal = 0;
+        ?>
+        <div class="right-container">
+            <h2 class="title-detail">Thông tin đơn hàng</h2>
+            <div class="product-pay-final">
+                <?php
+                    foreach($_SESSION['cart1'] as $cart_item){
+                        $total = $cart_item['amount'] * $cart_item['pricePr'];
+                        $totalFinal += $total;
+                        $query = "INSERT INTO orderproduct VALUES('','LVT{$_SESSION['name-id']}', '{$_SESSION['name-id']}', '{$cart_item['namePr']}', '{$cart_item['pricePr']}', '{$cart_item['amount']}', '03-05-2023')";
+                        mysqli_query($conn, $query);
+                ?>
+                <div class="left-pr-final">
+                    <div class="detail-product-pay">
+                        <div class="detail-product-pay-col1">
+                            <img src="../<?php echo $cart_item['imagePr'] ?>" alt="">
+                            <div class="detail-product-pay">
+                                <p><?php echo $cart_item['namePr'] ?></p>
+                                <p>x<?php echo $cart_item['amount'] ?></p>
+                                <p>SIZE: <?php echo $cart_item['size'] ?></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="price-product-pay">
+                        <p><?php echo number_format($total,0,',','.'). ' vnđ' ?></p>
+                    </div>
+                </div>
+                <?php
+                }
+                ?>      
+                <div class="line col2"></div>
+                <div class="right-pr-final">
+                    <p class="col2">Tổng giá trị sản phẩm: <?php echo number_format($totalFinal,0,',','.'). ' vnđ' ?></p>
+                    <p class="col2">Khuyến mãi: 0 vnđ</p>
+                    <p class="col2">Phí vận chuyển: 35.000 vnđ</p>
+                    <?php $totalShipProduct = $totalFinal + 35000; ?>
+                    <div class="line col2"></div>
+                    <p class="col2">Tổng cộng: <strong><?php echo number_format($totalShipProduct,0,',','.'). ' vnđ' ?></strong></p>
+                </div>
+                <div class="see-back">
+                    <p><a href="../detail-product/order-product.php">Xem lại đơn hàng</a></p>
+                    <p><a href="../home.php">Đến cửa hàng của chúng tôi</a></p>
+                </div>
+            </div>
+            
+        </div>
+
+    </div>
+    
+    <!-- ADD-TO-CARD -->
+
+    <div class="container-add-to-cart hide-add-to-card" id="show-itemBag">
+        <div class="title-atc">
+            <h3 class="name-cart">Giỏ Hàng</h3>
+            <p class="close-atc">Đóng</p>
+        </div>
+        <div class="notification-bag">
+            <p class="information-notification">Hiện tại bạn không có đơn hàng nào</p>
+        </div>
+        <div class="atc-bag"></div>
+        <div class="pay-product">
+            <button type="submit" class="pay-btn">Thanh toán</button>
+            <p class="notification-pay hide-notification-pay"> <i>Bạn chưa có sản phẩm nào trong giỏ hàng!</i> </p>
+        </div>
+        <div class="total-atc">
+            <h3 class="needPay"></h3>
+            <h3 class="total-product">Tổng: &nbsp;</h3>
+        </div>
+    </div>
+
+    
 
     <!-- FOOTER -->
 
@@ -205,10 +330,10 @@
                             <p class="title-light title-boid-size">Blog</p>
                         </li>
                         <li class="contract-detail social-media">
-                            <a href="#"><ion-icon name="logo-facebook"></ion-icon></a>
-                            <a href="#"><ion-icon name="logo-instagram"></ion-icon></a>
-                            <a href="#"><ion-icon name="logo-tiktok"></ion-icon></a>
-                            <a href="#"><ion-icon name="logo-youtube"></ion-icon></a>
+                            <a href="https://www.facebook.com/profile.php?id=100010803722460"><ion-icon name="logo-facebook"></ion-icon></a>
+                            <a href="https://www.instagram.com/minhtrung_sler/"><ion-icon name="logo-instagram"></ion-icon></a>
+                            <a href="https://www.tiktok.com/@09062003hn"><ion-icon name="logo-tiktok"></ion-icon></a>
+                            <a href="https://www.youtube.com/channel/UCDOHmjIGsiF64GNKpPP_9lw"><ion-icon name="logo-youtube"></ion-icon></a>
                         </li>
                 </div>
             </div>
@@ -216,6 +341,7 @@
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../js/addCard.js"></script>
     <script src="../js/searchMain.js"></script>
 </body>
 </html>

@@ -11,6 +11,16 @@
 </head>
 <body>
 
+    <?php
+    require('../login.php');
+    if (isset($_SESSION['test']) && ($_SESSION['test'] != "")){
+        $_SESSION['cartFinal'] = $_SESSION['cart1'];
+    }
+    else{
+        header('location: ../login.html');
+    }
+    ?>
+
     <!-- MENU -->
 
     <div class="navbar">
@@ -126,104 +136,90 @@
 
     <div class="container-pay">
         <div class="information-user">
-            <h3 class="title-pay col">THÔNG TIN GIAO HÀNG</h3>
-            <div class="col-IFU-1 col">
-                <input type="text" name="name-user" placeholder="Họ và tên">
-            </div>
-            <div class="col-IFU-2 col">
-                <input type="email" name="email-user" id="" placeholder="Email">
-                <input type="tel" name="tel-user" id="" placeholder="Số điện thoại">
-            </div>
-            <div class="col-IFU-3 col">
-                <input type="date" name="date-user" id="" class="date-user" placeholder="Ngày sinh">
-                <input type="text" name="address-user" id="" placeholder="Địa chỉ" class="address-user">
-            </div>
-            <div class="col-IFU-4 col">
-                <input type="text" name="address-detail-user" id="" class="address-detail-user" placeholder="Thành phố">
-                <input type="text" name="address-detail-user" id="" class="address-detail-user" placeholder="Quận/Huyện">
-                <input type="text" name="address-detail-user" id="" class="address-detail-user" placeholder="Phường">
-            </div>
-            <div class="confirm-product-pay col">
-                <p class="continue-pay">
-                    <a href="../menu-all-product/all-product.html"> << Tiếp tục mua sắm</a>
-                </p>
-                <p class="confirm-pay">
-                    <button class="btn-confirm" onclick="location.href='../final-pay/final-pay.html'">Xác nhận</button>
-                </p>
-            </div>
-            <h3 class="title-pay col">PHƯƠNG THỨC THANH TOÁN</h3>
-            <div class="categories-pay">
-                <div class="sub-cate-pay-1">
-                    <div class="check-pay col-1">
-                        <input type="checkbox" name="" id="sub-cates-1">
-                        <p>Chuyển khoản</p>
-                    </div>
-                    <p class="sub-cates col-1 hide-cates sub-cates-1" >
-                        Thực hiện thanh toán của bạn trực tiếp vào tài khoản ngân hàng của chúng mình. Vui lòng sử dụng ID đơn đặt hàng của bạn làm tham chiếu thanh toán. Đơn đặt hàng của bạn sẽ không được chuyển cho đến khi tài khoản của chúng mình thông báo đã nhận.
+            <form action="../final-pay/final-pay.php" method="get">
+                <h3 class="title-pay col">THÔNG TIN GIAO HÀNG</h3>
+                <div class="col-IFU-1 col">
+                    <input type="text" name="name-user" placeholder="Họ và tên">
+                </div>
+                <div class="col-IFU-2 col">
+                    <input type="email" name="email-user" id="" placeholder="Email">
+                    <input type="tel" name="tel-user" id="" placeholder="Số điện thoại">
+                </div>
+                <div class="col-IFU-3 col">
+                    <input type="date" name="date-user" id="" class="date-user" placeholder="Ngày sinh">
+                    <input type="text" name="address-user" id="" placeholder="Địa chỉ" class="address-user">
+                </div>
+                <div class="col-IFU-4 col">
+                    <input type="text" name="address-detail-user" id="" class="address-detail-user" placeholder="Thành phố">
+                    <input type="text" name="address-detail-user" id="" class="address-detail-user" placeholder="Quận/Huyện">
+                    <input type="text" name="address-detail-user" id="" class="address-detail-user" placeholder="Phường">
+                </div>
+                <div class="confirm-product-pay col">
+                    <p class="continue-pay">
+                        <a href="../menu-all-product/all-product.html"> << Tiếp tục mua sắm</a>
+                    </p>
+                    <p class="confirm-pay">
+                        <button class="btn-confirm" onclick="location.href='../final-pay/final-pay.html'">Xác nhận</button>
                     </p>
                 </div>
-                <div class="sub-cate-pay-1">
-                    <div class="check-pay col-1">
-                        <input type="checkbox" name="" id="sub-cates-2">
-                        <p>Thanh toán khi nhận hàng</p>
+                <h3 class="title-pay col">PHƯƠNG THỨC THANH TOÁN</h3>
+                <div class="categories-pay">
+                    <div class="sub-cate-pay-1">
+                        <div class="check-pay col-1">
+                            <input type="checkbox" name="banking" id="sub-cates-1" value="pt1">
+                            <p>Chuyển khoản</p>
+                        </div>
+                        <p class="sub-cates col-1 hide-cates sub-cates-1" >
+                            Thực hiện thanh toán của bạn trực tiếp vào tài khoản ngân hàng của chúng mình. Vui lòng sử dụng ID đơn đặt hàng của bạn làm tham chiếu thanh toán. Đơn đặt hàng của bạn sẽ không được chuyển cho đến khi tài khoản của chúng mình thông báo đã nhận.
+                        </p>
                     </div>
-                    <p class="sub-cates col-1 hide-cates sub-cates-2" >
-                        Thanh toán bằng tiền mặt khi giao hàng.
-                    </p>
+                    <div class="sub-cate-pay-1">
+                        <div class="check-pay col-1">
+                            <input type="checkbox" name="cod" id="sub-cates-2" value="pt2">
+                            <p>Thanh toán khi nhận hàng</p>
+                        </div>
+                        <p class="sub-cates col-1 hide-cates sub-cates-2" >
+                            Thanh toán bằng tiền mặt khi giao hàng.
+                        </p>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
+        <?php
+            $totalFinal = 0;
+        ?>
         <div class="information-product-pay">
             <h3 class="title-pay col">GIỎ HÀNG</h3>
+
+            <?php 
+                    foreach($_SESSION['cart1'] as $cart_item){
+                        $total = $cart_item['amount'] * $cart_item['pricePr'];
+                        $totalFinal += $total;
+            ?>
             <div class="all-product-pay">
                 <div class="product-pay-child">
                     <div class="img-product-pay-child">
-                        <img src="../img/all1-bf.jpg" alt="">
+                        <img src="../<?php echo $cart_item['imagePr']?>">
                     </div>
                     <div class="info-product-pay-child">
-                        <p class="title-detail-product-pay col-1">LEVENTS® | DORAEMON MINI CAT POLO/ BLACK</p>
-                        <p class="size-product-pay col-1">Size SIZE 1</p>
+                        <p class="title-detail-product-pay col-1"><?php echo $cart_item['namePr']?></p>
+                        <p class="size-product-pay col-1">Size SIZE <?php echo $cart_item['size']?></p>
                         <div class="amount-product-pay col-1">
-                            <p class="sub-1-pay">x 1</p>
-                            <p class="sub-1-pay">390.000 Vnđ</p>
+                            <p class="sub-1-pay">x <?php echo $cart_item['amount']?></p>
+                            <p class="sub-1-pay"><?php echo number_format($total,0,',','.'). ' vnđ' ?></p>
                         </div>
                     </div>
                 </div>
-                <div class="remove-product">
-                    <div class="bnt-remove-product">
-                        <p>Xóa</p>
-                    </div>
-                    <div class="sub-remove-product hide-remove">
-                        <p>Bạn có chắc muốn <strong>XÓA</strong> sản phẩm này</p>
-                        <button class="yes btn3" id="cYes">Có</button>
-                        <button class="no btn3" id="cNo">Không</button>
-                    </div>
-                </div>
             </div>
-        </div>
-    </div>
-
-
-
-    
-    <!-- ADD-TO-CARD -->
-
-    <div class="container-add-to-cart hide-add-to-card" id="show-itemBag">
-        <div class="title-atc">
-            <h3 class="name-cart">Giỏ Hàng</h3>
-            <p class="close-atc">Đóng</p>
-        </div>
-        <div class="notification-bag">
-            <p class="information-notification">Hiện tại bạn không có đơn hàng nào</p>
-        </div>
-        <div class="atc-bag"></div>
-        <div class="pay-product">
-            <button type="submit" class="pay-btn">Thanh toán</button>
-            <p class="notification-pay hide-notification-pay"> <i>Bạn chưa có sản phẩm nào trong giỏ hàng!</i> </p>
-        </div>
-        <div class="total-atc">
-            <h3 class="needPay"></h3>
-            <h3 class="total-product">Tổng: &nbsp;</h3>
+            <?php 
+                } 
+                ?>
+                <div class="total-product">
+                    <h3>Thành tiền: <?php echo number_format($totalFinal,0,',','.'). ' vnđ' ?></h3>
+                </div>
+                <div class="backToBag">
+                    <a href="../detail-product/order-product.php">Quay lại giỏ hàng</a>
+                </div>
         </div>
     </div>
 
@@ -340,32 +336,6 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="../js/addCard.js"></script>
     <script src="../js/searchMain.js"></script>
-    <script>
-        // PTTT
-        const pay1 = document.getElementById("sub-cates-1")
-        const subPay1 = document.querySelector(".sub-cates-1")
-        const pay2 = document.getElementById("sub-cates-2")
-        const subPay2 = document.querySelector(".sub-cates-2")
-            
-        pay1.addEventListener("click", function(){
-            subPay1.classList.remove("hide-cates")
-            subPay2.classList.add("hide-cates")
-        })
-        pay2.addEventListener("click", function(){
-            subPay2.classList.remove("hide-cates")
-            subPay1.classList.add("hide-cates")
-        })
-
-        // remove product
-        const btnRemove = document.querySelector(".bnt-remove-product")
-        const showRemove = document.querySelector(".sub-remove-product")
-        const choiceNo = document.getElementById("cNo")
-        btnRemove.addEventListener("click", function(){
-            showRemove.classList.remove("hide-remove")
-        })
-        choiceNo.addEventListener("click", function(){
-            showRemove.classList.add("hide-remove")
-        })
-    </script>
+    <script type="module" src="./js/main.js"></script>
 </body>
 </html>

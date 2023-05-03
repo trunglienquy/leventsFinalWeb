@@ -148,16 +148,7 @@
     $stmt = "SELECT * FROM allProduct WHERE nameProduct LIKE '%" . $content . "%'";
     $query_stmt = mysqli_query($conn, $stmt);
     ?>
-    <div class="container" style="margin-top: 50px;">
-        <div class="results-search">
-            <p class="title-result">Kết quả tìm kiếm cho: &nbsp;</p>
-            <?php
-            echo "<script>document.write(localStorage.getItem('tag'));</script>";
-            ?>
-        </div>
-    </div>
-
-
+    
     <?php
     if (isset($_GET['btnConfirmFind'])) {
         $cateID = $_GET['categoryProduct'];
@@ -202,6 +193,7 @@
         //ceil dùng để làm tròn số trang
         $totalPage = ceil($totalProduct / $itemOfPage);
     } else if (isset($_GET['btnConfirmFind'])) {
+        $test = "";
         $stmt = "SELECT * FROM allproduct JOIN category WHERE allproduct.catagories = '$cateID' AND idCategory = '$cateID' AND `priceProduct` BETWEEN $price1 AND $price2";
         // paging
         $itemOfPage = !empty($_GET['itemOfPage']) ? $_GET['itemOfPage'] : 8;

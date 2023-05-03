@@ -366,6 +366,14 @@ input[type=number]::-webkit-inner-spin-button {
     font-weight: 500;
 }
 
+.backToBag{
+    margin-top: 30px;
+    text-align: right;
+}
+.backToBag a{
+    color: #009eff;
+}
+
 /* PAY PRODUCT */
 
 .container-pay{
