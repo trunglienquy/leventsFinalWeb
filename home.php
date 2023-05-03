@@ -75,22 +75,22 @@
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-lists">
                         <li class="dropdown-menu-item">
-                            <a href="./menu-product/all-product.html">Tất cả</a>
+                            <a href="./menu-product/all-product.php">Tất cả</a>
                         </li>
                         <li class="dropdown-menu-item">
                             <a href="./menu-product/new-arrival.php">Sản phẩm mới</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="./menu-product/tee-shirt.html">Áo thun</a>
+                            <a href="./menu-product/tee-shirt.php">Áo thun</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="./menu-product/pant.html">Quần</a>
+                            <a href="./menu-product/pant.php">Quần</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="./menu-product/balo.html">Ba-lo</a>
+                            <a href="./menu-product/balo.php">Ba-lo</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="./menu-product/outwear.html">Áo khoác</a>
+                            <a href="./menu-product/outwear.php">Áo khoác</a>
                         </li>
                         <li class="dropdown-menu-item">
                             <a href="./menu-product/pk.html">Phụ kiện</a>

@@ -251,8 +251,7 @@
             <?php
             if ($currentPage > 3) {
             ?>
-                <li class="paging-item"><a href="?itemOfPage=<?= $itemOfPage ?>&page=1">
-                        <=< /a>
+                <li class="paging-item"><a href="?itemOfPage=<?= $itemOfPage ?>&page=1"><= </a>
                 </li>
             <?php
             }
@@ -261,7 +260,7 @@
             if ($currentPage > 1) {
             ?>
                 <li class="paging-item"><a href="?itemOfPage=<?= $itemOfPage ?>&page=<?= $currentPage - 1 ?>">
-                        <<< /a>
+                        << </a>
                 </li>
             <?php
             }
@@ -284,7 +283,7 @@
             <?php
             if ($currentPage < $totalPage - 1) {
             ?>
-                <li class="paging-item"><a href="?itemOfPage=<?= $itemOfPage ?>&page=<?= $currentPage + 1 ?>">>></a></li>
+                <li class="paging-item"><a href="?itemOfPage=<?= $itemOfPage ?>&page=<?= $currentPage + 1 ?>"> >> </a></li>
             <?php
             }
             ?>
