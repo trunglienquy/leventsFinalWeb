@@ -160,6 +160,9 @@
         <?php
             $totalFinal = 0;
         ?>
+        <?php
+            if (isset($_SESSION['cart1'])){
+        ?>
         <div class="right-container">
             <h2 class="title-detail">Thông tin đơn hàng</h2>
             <div class="product-pay-final">
@@ -167,7 +170,8 @@
                     foreach($_SESSION['cart1'] as $cart_item){
                         $total = $cart_item['amount'] * $cart_item['pricePr'];
                         $totalFinal += $total;
-                        $query = "INSERT INTO orderproduct VALUES('','LVT{$_SESSION['name-id']}', '{$_SESSION['name-id']}', '{$cart_item['namePr']}', '{$cart_item['pricePr']}', '{$cart_item['amount']}', '03-05-2023')";
+                        // $date_time = date("d-m-y");
+                        $query = "INSERT INTO orderproduct VALUES('','LVT{$_SESSION['name-id']}', '{$_SESSION['name-id']}', '{$cart_item['namePr']}', '{$cart_item['imagePr']}', '{$cart_item['pricePr']}', '{$cart_item['amount']}', (NOW()), 1)";
                         mysqli_query($conn, $query);
                 ?>
                 <div class="left-pr-final">
@@ -204,8 +208,14 @@
             </div>
             
         </div>
-
+        <?php
+            }
+        ?>
     </div>
+
+    <?php
+        unset($_SESSION['cart1']);
+    ?>
     
     <!-- ADD-TO-CARD -->
 

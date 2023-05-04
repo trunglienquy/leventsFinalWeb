@@ -8,16 +8,8 @@
 </head>
 <body>
 <?php
+    $date_time = date("d-m-y");
+    echo $date_time;
 ?>
-<div class="banner">
-        <div class="banner-product">
-            <img src="./img/banner.jpg" alt="">
-        </div>
-        <div class="banner-collection">
-            <form action="./navbar-collection/collection-doraemon.html">
-                <button class="btn-banner">Levents BST MỚI!</button>
-            </form>
-        </div>
-    </div>
 </body>
 </html>

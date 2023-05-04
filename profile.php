@@ -105,27 +105,6 @@
             <li class="navbar-menu_item navbar-menu_item-underline"><a href="#">About</a></li>
         </ul>
     </div>
-    
-    <!-- ADD-TO-CARD -->
-
-    <div class="container-add-to-cart hide-add-to-card" id="show-itemBag">
-        <div class="title-atc">
-            <h3 class="name-cart">Gỏi Hàng</h3>
-            <p class="close-atc">Close</p>
-        </div>
-        <div class="notification-bag">
-            <p class="information-notification">Hiện tại bạn không có đơn hàng nào</p>
-        </div>
-        <div class="atc-bag"></div>
-        <div class="pay-product">
-            <button type="submit" class="pay-btn">Thanh toán</button>
-            <p class="notification-pay hide-notification-pay"> <i>Bạn chưa có sản phẩm nào trong giỏ hàng!</i> </p>
-        </div>
-        <div class="total-atc">
-            <h3 class="needPay"></h3>
-            <h3 class="total-product">Tổng: &nbsp;</h3>
-        </div>
-    </div>
 
     <!-- main -->
     
@@ -138,7 +117,7 @@
                 <div class="profile-user-information">
                     <h3>
                         <?php
-                            echo $_SESSION['test'];
+                            echo $_SESSION['name-info'];
                         ?>
                      </h3>
                     <p class="email-user">abc@gmail.com</p>
@@ -146,13 +125,16 @@
             </div>
             <div class="profile-user-link">
                 <ul class="list-link">
-                    <li class="list-link-item col"><a href="#">Thông tin cá nhân</a></li>
-                    <li class="list-link-item col"><a href="#">Sổ địa chỉ</a></li>
-                    <li class="list-link-item col"><a href="#">Đơn hàng của tôi</a></li>
-                    <li class="list-link-item col"><a href="#">Đăng xuất</a></li>
+                    <li class="list-link-item col"><a href="./profile.php?profile=1">Thông tin cá nhân</a></li>
+                    <li class="list-link-item col"><a href="./profile.php?profile=2">Sổ địa chỉ</a></li>
+                    <li class="list-link-item col"><a href="./profile.php?profile=3">Đơn hàng của tôi</a></li>
+                    <li class="list-link-item col"><a href="./profile.php?profile=4">Đăng xuất</a></li>
                 </ul>
             </div>
         </div>
+        <?php
+            if (isset($_GET['profile']) && $_GET['profile'] == 1){
+        ?>
         <div class="main-right">
             <h2 class="title-main-right">Thông tin cá nhân</h2>
             <div class="col-main-right">
@@ -171,6 +153,102 @@
                 <h3 class="col1">Ngày sinh</h3>
                 <p class="col1"><?php echo $_SESSION['name-birthday']?></p>
             </div>
+        </div>
+        <?php
+            }
+        ?>
+        <?php
+            if (isset($_GET['profile']) && $_GET['profile'] == 2){
+        ?>
+        <div class="main-right">
+            <h2 class="title-main-right">Thông tin cá nhân</h2>
+            <div class="col-main-right">
+                <h3 class="col1">Ngày sinh</h3>
+                <p class="col1"><?php echo $_SESSION['name-birthday']?></p>
+            </div>
+        </div>
+        <?php
+            }
+        ?>
+        <?php
+            $query = "SELECT * FROM orderproduct WHERE idCustomer = '{$_SESSION['name-id']}'";
+            $bag = mysqli_query($conn, $query);
+            $check = mysqli_num_rows($bag);
+            if (isset($_GET['profile']) && $_GET['profile'] == 3 && $check > 0){
+                while($conn = mysqli_fetch_array($bag)){
+        ?>
+        <div class="main-right">
+            <h2 class="title-main-right">Đơn hàng của tôi</h2>
+            <div class="bag-order">
+                <table>
+                    <tr>
+                        <th>Mã đơn hàng</th>
+                        <th>Ngày đặt</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Thành tiền</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                    <tr>
+                        <td><?php echo $conn['idOrder'] ?></td>
+                        <td><?php echo $conn['dateOrder'] ?></td>
+                        <td><?php echo $conn['nameProductOrder'] ?></td>
+                        <td><?php echo $conn['quanityProductOrder'] ?></td>
+                        <td><?php echo $conn['priceProductOrder'] ?></td>
+                        <td>
+                            <?php 
+                                $noti_check = "Chưa rõ";
+                                if($conn['status'] == 1){
+                                    $noti_check = "Đang chờ được duyệt";
+                                }
+                                else if ($conn['status'] == 2){
+                                    $noti_check = "Hoàn thành";
+                                }
+                                else if ($conn['status'] == 3){
+                                    $noti_check = "Hủy";
+                                }
+                                echo $noti_check;
+                            ?>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <?php
+                }
+            } else if (isset($_GET['profile']) && $_GET['profile'] == 3 && $check == 0){
+        ?>
+            <div class="main-right">
+                <h2 class="title-main-right">Đơn hàng của tôi</h2>
+                <div class="bag-order">
+                    <table>
+                        <tr>
+                            <th>Mã đơn hàng</th>
+                            <th>Ngày đặt</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Số lượng</th>
+                            <th>Thành tiền</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                        <tr>
+                            <td colspan="6">Hiện tại bạn không có đơn hàng nào</td>
+                        </tr>
+                    </table>
+            </div>
+        </div>
+        <?php
+            } else if (isset($_GET['profile']) && $_GET['profile'] == 4){
+                if (isset($_SESSION['test'])){
+                    $home_path = 'http://localhost/levents-web-main/home.php'; // replace with your file path
+                    echo '<meta http-equiv="refresh" content="0; URL=' . $home_path . '">';
+                    unset($_SESSION['test']);
+                }
+                else{
+                    $home_path = 'http://localhost/levents-web-main/home.php'; // replace with your file path
+                    echo '<meta http-equiv="refresh" content="0; URL=' . $home_path . '">';
+                }
+            }
+        ?>
         </div>
     </div>
     <!-- FOOTER -->
