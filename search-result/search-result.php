@@ -129,31 +129,24 @@
 
     <!-- SEARCH RESULT -->
 
-    <script>
-        var myValue = localStorage.getItem('tag')
-    </script>
-
     <?php
     $conn = mysqli_connect("localhost", "root", "", "pjweb");
 
     if (isset($_GET['searchBtn'])) {
-        $content = $_GET['content'];
-    } else {
-        $test = "<script>document.write(localStorage.getItem('tag'));</script>";
-        $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $test); // Remove any <script> tags from $test
+        if (isset($_GET['content'])){
+            $_SESSION['content'] = $_GET['content'];
+        } else{
+            $_SESSION['content'] = "";
+        }
     }
-    // $test ="<script>document.write(localStorage.getItem('tag'));</script>";
-    // $content = "<script>document.write(localStorage.getItem('tag'));</script>";
-    // $content = preg_replace('/<script\b[^>]*>(.*?)<\/script>/is', '', $test);
-    $stmt = "SELECT * FROM allProduct WHERE nameProduct LIKE '%" . $content . "%'";
-    $query_stmt = mysqli_query($conn, $stmt);
     ?>
     
     <?php
-    if (isset($_GET['btnConfirmFind'])) {
         $cateID = $_GET['categoryProduct'];
         $cateID2 = $_GET['rangePrice'];
-        if ($cateID == 1) {
+        if($cateID == 0){
+            $cateName = "null";
+        } else if ($cateID == 1) {
             $cateName = "t-shirt";
         } else if ($cateID == 2) {
             $cateName = "pants";
@@ -164,8 +157,10 @@
         } else if ($cateID == 5) {
             $cateName = "accessories";
         }
-
-        if ($cateID2 == 1) {
+        if ($cateID2 == 0){
+            $price1 = "null"; 
+            $price2 = "null"; 
+        }elseif ($cateID2 == 1) {
             $price1 = 0;
             $price2 = 300000;
         } else if ($cateID2 == 2) {
@@ -176,36 +171,30 @@
             $price1 = 500001;
             $price2 = 2000000;
         }
-    }
     if (isset($_GET['searchBtn'])) {
-        // session_start();
+        $itemOfPage = !empty($_GET['itemOfPage']) ? $_GET['itemOfPage'] : 8;
+        $currentPage = !empty($_GET['page']) ? $_GET['page'] : 1;
+        $offset = ($currentPage - 1) * $itemOfPage;
         $conn = mysqli_connect("localhost", "root", "", "pjweb");
-        //paging - offset = (currentPage - 1) * itemHavePage;
-        $stmt = "SELECT * FROM `allProduct` WHERE `nameProduct` LIKE '%$content%'";
-        $itemOfPage = !empty($_GET['itemOfPage']) ? $_GET['itemOfPage'] : 8;
-        // $itemOfPage = 1; //test btn next, prev, toFirstPage, toEndPage
-        $currentPage = !empty($_GET['page']) ? $_GET['page'] : 1;
-        $offset = ($currentPage - 1) * $itemOfPage;
-        $product = mysqli_query($conn, "SELECT * FROM `allProduct` WHERE `nameProduct` LIKE '%$content%' ORDER BY `idProduct` ASC LIMIT " . $itemOfPage . " OFFSET " . $offset . "");
-        //create paging
+        if ($cateName == "null" && ($price1 == "null" || $price2 == "null") && $_SESSION['content'] != ""){
+            $stmt = "SELECT * FROM `allProduct` WHERE `nameProduct` LIKE '%{$_SESSION['content']}%'";
+            $product = mysqli_query($conn, "SELECT * FROM `allProduct` WHERE `nameProduct` LIKE '%{$_SESSION['content']}%' ORDER BY `idProduct` ASC LIMIT " . $itemOfPage . " OFFSET " . $offset . "");
+            // var_dump($product);exit;
+        }
+        else if ($cateName == "null" && ($price1 != "null" && $price2 != "null") && $_SESSION['content'] != ""){
+            $stmt = "SELECT * FROM allproduct WHERE `priceProduct` BETWEEN $price1 AND $price2 AND `nameProduct` LIKE '%{$_SESSION['content']}%'";
+            $product = mysqli_query($conn, "SELECT * FROM allproduct WHERE `priceProduct` BETWEEN $price1 AND $price2 AND `nameProduct` LIKE '%{$_SESSION['content']}%' ORDER BY `idProduct` ASC LIMIT " . $itemOfPage . " OFFSET " . $offset . "");
+        }
+        else if ($cateName != "null" && ($price1 == "null" && $price2 == "null") && $_SESSION['content'] != ""){
+            $stmt = "SELECT * FROM allproduct JOIN category WHERE allproduct.catagories = '$cateID' AND idCategory = '$cateID' AND `nameProduct` LIKE '%{$_SESSION['content']}%'";
+            $product = mysqli_query($conn, "SELECT * FROM allproduct JOIN category WHERE allproduct.catagories = '$cateID' AND idCategory = '$cateID' AND `nameProduct` LIKE '%{$_SESSION['content']}%' ORDER BY `idProduct` ASC LIMIT " . $itemOfPage . " OFFSET " . $offset . "");
+        }
+        else if ($cateName != "null" && ($price1 != "null" && $price2 != "null") && $_SESSION['content'] != ""){
+            $stmt = "SELECT * FROM allproduct JOIN category WHERE allproduct.catagories = '$cateID' AND idCategory = '$cateID' AND `priceProduct` BETWEEN $price1 AND $price2 AND `nameProduct` LIKE '%{$_SESSION['content']}%'";
+            $product = mysqli_query($conn, "SELECT * FROM allproduct JOIN category WHERE allproduct.catagories = '$cateID' AND idCategory = '$cateID' AND `priceProduct` BETWEEN $price1 AND $price2 AND `nameProduct` LIKE '%{$_SESSION['content']}%' ORDER BY `idProduct` ASC LIMIT " . $itemOfPage . " OFFSET " . $offset . "");
+        }
         $totalProduct = mysqli_query($conn, $stmt);
         $totalProduct = $totalProduct->num_rows;
-        //ceil dùng để làm tròn số trang
-        $totalPage = ceil($totalProduct / $itemOfPage);
-    } else if (isset($_GET['btnConfirmFind'])) {
-        $test = "";
-        $stmt = "SELECT * FROM allproduct JOIN category WHERE allproduct.catagories = '$cateID' AND idCategory = '$cateID' AND `priceProduct` BETWEEN $price1 AND $price2";
-        // paging
-        $itemOfPage = !empty($_GET['itemOfPage']) ? $_GET['itemOfPage'] : 8;
-        // $itemOfPage = 1; //test btn next, prev, toFirstPage, toEndPage
-        $currentPage = !empty($_GET['page']) ? $_GET['page'] : 1;
-        $offset = ($currentPage - 1) * $itemOfPage;
-        $product = mysqli_query($conn, "SELECT * FROM allproduct JOIN category WHERE allproduct.catagories = '$cateID' AND idCategory = '$cateID' AND `priceProduct` BETWEEN $price1 AND $price2 ORDER BY `idProduct` ASC LIMIT " . $itemOfPage . " OFFSET " . $offset . "");
-        // var_dump($product);
-        //create paging
-        $totalProduct = mysqli_query($conn, $stmt);
-        $totalProduct = $totalProduct->num_rows;
-        //ceil dùng để làm tròn số trang
         $totalPage = ceil($totalProduct / $itemOfPage);
     }
     ?>
@@ -230,16 +219,13 @@
     </div>
 
     <!-- paging -->
-    <?php
-        if (isset($_GET['btnConfirmFind'])){
-    ?>
 
     <div class="paging">
         <ul class="paging-lists">
             <?php
             if ($currentPage > 3) {
             ?>
-                <li class="paging-item"><a href="?categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&btnConfirmFind=Xác+nhận&itemOfPage=<?= $itemOfPage ?>&page=1">
+                <li class="paging-item"><a href="?content=<?=$_SESSION['content']?>&categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&searchBtn=Search&itemOfPage=<?= $itemOfPage ?>&page=1">
                         <=< /a>
                 </li>
             <?php
@@ -248,7 +234,7 @@
             <?php
             if ($currentPage > 1) {
             ?>
-                <li class="paging-item"><a href="?categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&btnConfirmFind=Xác+nhận&itemOfPage=<?= $itemOfPage ?>&page=<?= $currentPage - 1 ?>"> << </a>
+                <li class="paging-item"><a href="?content=<?=$_SESSION['content']?>&categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&searchBtn=Search&itemOfPage=<?= $itemOfPage ?>&page=<?= $currentPage - 1 ?>"> << </a>
                 </li>
             <?php
             }
@@ -258,12 +244,12 @@
                 if ($i != $currentPage) {
                     if ($i > $currentPage - 3 && $i < $currentPage + 3) {
             ?>
-                        <li class="paging-item" onclick="activeLink()"><a href="?categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&btnConfirmFind=Xác+nhận&itemOfPage=<?= $itemOfPage ?>&page=<?= $i ?>"><?= $i ?></a></li>
+                        <li class="paging-item" onclick="activeLink()"><a href="?content=<?=$_SESSION['content']?>&categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&searchBtn=Search&itemOfPage=<?= $itemOfPage ?>&page=<?= $i ?>"><?= $i ?></a></li>
                     <?php
                     }
                 } else {
                     ?>
-                    <li class="paging-item active-paging"><a href="?categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&btnConfirmFind=Xác+nhận&itemOfPage=<?= $itemOfPage ?>&page=<?= $i ?>"><?= $i ?></a></li>
+                    <li class="paging-item active-paging"><a href="?content=<?=$_SESSION['content']?>&categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&searchBtn=Search&itemOfPage=<?= $itemOfPage ?>&page=<?= $i ?>"><?= $i ?></a></li>
             <?php
                 }
             }
@@ -271,79 +257,23 @@
             <?php
             if ($currentPage < $totalPage - 1) {
             ?>
-                <li class="paging-item"><a href="?categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&btnConfirmFind=Xác+nhận&itemOfPage=<?= $itemOfPage ?>&page=<?= $currentPage + 1 ?>"> >> </a></li>
+                <li class="paging-item"><a href="?content=<?=$_SESSION['content']?>&categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&searchBtn=Search&itemOfPage=<?= $itemOfPage ?>&page=<?= $currentPage + 1 ?>"> >> </a></li>
             <?php
             }
             ?>
             <?php
             if ($currentPage < $totalPage - 2) {
             ?>
-                <li class="paging-item"><a href="?categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&btnConfirmFind=Xác+nhận&itemOfPage=<?= $itemOfPage ?>&page=<?= $totalPage ?>"> => </a></li>
+                <li class="paging-item"><a href="?content=<?=$_SESSION['content']?>&categoryProduct=<?=$cateID?>&rangePrice=<?=$cateID2?>&searchBtn=Search&itemOfPage=<?= $itemOfPage ?>&page=<?= $totalPage ?>"> => </a></li>
             <?php
             }
             ?>
         </ul>
     </div>
-    <?php
-        }
-    ?>
 
     <!-- paging -->
-    <?php
-        if (isset($_GET['searchBtn'])){
-    ?>
 
-<div class="paging">
-        <ul class="paging-lists">
-            <?php
-                if ($currentPage > 3){
-            ?>
-                <li class="paging-item"><a href="?content=<?=$content?>&searchBtn=Search&itemOfPage=<?=$itemOfPage?>&page=1"><=</a></li>
-            <?php
-                }
-            ?>
-            <?php
-                if ($currentPage > 1){
-            ?>
-                <li class="paging-item"><a href="?content=<?=$content?>&searchBtn=Search&itemOfPage=<?=$itemOfPage?>&page=<?=$currentPage - 1?>"><<</a></li>
-            <?php
-                }
-            ?>
-            <?php
-                for ($i = 1; $i <= $totalPage; $i++) {
-                    if ($i != $currentPage){
-                        if ($i > $currentPage - 3 && $i < $currentPage + 3){
-            ?>
-            <li class="paging-item" onclick="activeLink()" ><a href="?content=<?=$content?>&searchBtn=Search&itemOfPage=<?=$itemOfPage?>&page=<?=$i?>"><?=$i?></a></li>
-            <?php
-                        }
-                    }
-                    else{
-            ?>
-            <li class="paging-item active-paging" ><a href="?content=<?=$content?>&searchBtn=Search&itemOfPage=<?=$itemOfPage?>&page=<?=$i?>"><?=$i?></a></li>
-            <?php
-                    }
-                }
-            ?>
-            <?php
-                if ($currentPage < $totalPage - 1){
-            ?>
-                <li class="paging-item"><a href="?content=<?=$content?>&searchBtn=Search&itemOfPage=<?=$itemOfPage?>&page=<?=$currentPage + 1?>">>></a></li>
-            <?php
-                }
-            ?>
-            <?php
-                if ($currentPage < $totalPage - 2){
-            ?>
-                <li class="paging-item"><a href="?content=<?=$content?>&searchBtn=Search&itemOfPage=<?=$itemOfPage?>&page=<?=$totalPage?>">=></a></li>
-            <?php
-                }
-            ?>
-        </ul>
-    </div>
-    <?php
-        }
-    ?>
+    <!-- ?content=levents&searchBtn=Search&categoryProduct=1&rangePrice=0 -->
 
 
 

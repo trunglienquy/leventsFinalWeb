@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2023 at 02:16 PM
+-- Generation Time: May 05, 2023 at 06:15 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -54,7 +54,25 @@ INSERT INTO `allproduct` (`idProduct`, `nameProduct`, `priceProduct`, `imageFron
 (10, 'Levents áo thun 10', 350000, 'img/all12-bf.jpg', 'img/all12-af.jpg', 1, 100),
 (11, 'Levents áo thun 11', 350000, 'img/pr1F.jpg', 'img/pr1.png', 1, 100),
 (12, 'Levents áo thun 12', 550000, 'img/tee-1-bf.jpg', 'img/tee-1-af.jpg', 1, 100),
-(13, 'Levents quần 1', 500000, 'img/pant-1-bf.jpg', 'img/pant-1-af.jpg', 2, 100);
+(13, 'Levents quần 1', 500000, 'img/pant-1-bf.jpg', 'img/pant-1-af.jpg', 2, 100),
+(15, 'Levents quần 2', 550000, 'img/pant-2-bf.jpg', 'img/pant-2-af.jpg', 2, 100),
+(16, 'Levents quần 3', 550000, 'img/pant-3-bf.jpg', 'img/pant-3-af.jpg', 2, 100),
+(17, 'Levents quần 4', 550000, 'img/pant-4-bf.jpg', 'img/pant-4-af.jpg', 2, 100),
+(18, 'Levents quần 5', 550000, 'img/pant-5-bf.jpg', 'img/pant-5-bf.jpg', 2, 100),
+(19, 'Levents quần 6', 450000, 'img/pant-6-bf.jpg', 'img/pant-6-af.jpg', 2, 100),
+(20, 'Levents quần 7', 450000, 'img/pant-7-bf.jpg', 'img/pant-7-af.jpg', 2, 100),
+(21, 'Levents quần 8', 450000, 'img/pant-8-bf.jpg', 'img/pant-8-af.jpg', 2, 100),
+(22, 'Levents balo 1', 650000, 'img/balo1-bf.jpg', 'img/balo1-af.jpg', 3, 100),
+(23, 'Levents balo 2', 650000, 'img/balo2-bf.jpg', 'img/balo2-af.jpg', 3, 100),
+(24, 'Levents áo khoác 1', 520000, 'img/all8-bf.jpg', 'img/all8-af.jpg', 4, 100),
+(25, 'Levents áo khoác 2', 520000, 'img/all9-bf.jpg', 'img/all9-af.jpg', 4, 100),
+(26, 'Levents áo khoác 3', 520000, 'img/out1-bf.jpg', 'img/out1-af.jpg', 4, 100),
+(27, 'Levents áo khoác 4', 520000, 'img/out2-bf.jpg', 'img/out2-af.jpg', 4, 100),
+(33, 'Levents áo khoác 5', 520000, 'img/out2-bf.jpg', 'img/out2-af.jpg', 4, 100),
+(34, 'Levents áo khoác 6', 520000, 'img/out3-bf.jpg', 'img/out3-af.jpg', 4, 100),
+(35, 'Levents áo khoác 7', 520000, 'img/out4-bf.jpg', 'img/out4-af.jpg', 4, 100),
+(36, 'Levents áo khoác 8', 520000, 'img/out5-bf.jpg', 'img/out5-af.png', 4, 100),
+(37, 'Levents áo khoác 9', 520000, 'img/out6-bf.jpg', 'img/out6-af.png', 4, 100);
 
 -- --------------------------------------------------------
 
@@ -197,7 +215,7 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `allproduct`
 --
 ALTER TABLE `allproduct`
-  MODIFY `idProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `idProduct` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `category`
