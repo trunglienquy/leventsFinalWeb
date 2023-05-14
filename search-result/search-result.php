@@ -179,7 +179,6 @@
         if ($cateName == "null" && ($price1 == "null" || $price2 == "null") && $_SESSION['content'] != ""){
             $stmt = "SELECT * FROM `allProduct` WHERE `nameProduct` LIKE '%{$_SESSION['content']}%'";
             $product = mysqli_query($conn, "SELECT * FROM `allProduct` WHERE `nameProduct` LIKE '%{$_SESSION['content']}%' ORDER BY `idProduct` ASC LIMIT " . $itemOfPage . " OFFSET " . $offset . "");
-            // var_dump($product);exit;
         }
         else if ($cateName == "null" && ($price1 != "null" && $price2 != "null") && $_SESSION['content'] != ""){
             $stmt = "SELECT * FROM allproduct WHERE `priceProduct` BETWEEN $price1 AND $price2 AND `nameProduct` LIKE '%{$_SESSION['content']}%'";

@@ -175,8 +175,7 @@
             $bag = mysqli_query($conn, $query);
             $check = mysqli_num_rows($bag);
             if (isset($_GET['profile']) && $_GET['profile'] == 3 && $check > 0){
-                while($conn = mysqli_fetch_array($bag)){
-        ?>
+            ?>
         <div class="main-right">
             <h2 class="title-main-right">Đơn hàng của tôi</h2>
             <div class="bag-order">
@@ -186,34 +185,38 @@
                         <th>Địa chỉ</th>
                         <th>Thành tiền</th>
                         <th>Phương thức thanh toán</th>
-                        <th>Chi tieets</th>
+                        <th>Chi tiết</th>
                     </tr>
+                    <?php
+                        while($conn = mysqli_fetch_array($bag)){
+                    ?>
                     <tr>
                         <td><?php echo $conn['idOrder'] ?></td>
                         <td><?php echo $conn['addressCustomer'] ?></td>
                         <td><?php echo $conn['totalPayment'] ?></td>
-                        <td><?php echo $conn['menthodPayment'] ?></td>
                         <td>
-                            <?php 
-                                $noti_check = "Chưa rõ";
-                                if($conn['statusOrder'] == 1){
-                                    $noti_check = "Đang chờ được duyệt";
+                            <?php
+                                $payment = "Chưa rõ";
+                                if ($conn['menthodPayment'] == 1){
+                                    $payment = "Tiền mặt";
                                 }
-                                else if ($conn['statusOrder'] == 2){
-                                    $noti_check = "Hoàn thành";
+                                else if ($conn['menthodPayment'] == 2){
+                                    $payment = "Chuyển khoản";
                                 }
-                                else if ($conn['statusOrder'] == 3){
-                                    $noti_check = "Hủy";
-                                }
-                                echo $noti_check;
+                                echo $payment;
                             ?>
                         </td>
+                        <td>
+                            <a href="./profile.php?idOrder=<?php echo $conn['idOrder']?>" style="color: #009eff;" >Chi tiết</a>
+                        </td>
                     </tr>
+                    <?php
+                        }
+                    ?>
                 </table>
             </div>
         </div>
         <?php
-                }
             } else if (isset($_GET['profile']) && $_GET['profile'] == 3 && $check == 0){
         ?>
             <div class="main-right">
@@ -247,7 +250,61 @@
                 }
             }
         ?>
+
+        <?php
+            if (isset($_GET['idOrder']) && $_GET['idOrder'] != ""){
+                $totalCost = 0; $productCost = 0;
+                $idOrder = $_GET['idOrder'];
+                $query = "SELECT * FROM orderproductdetail WHERE idOrderPayment = $idOrder";
+                $bag = mysqli_query($conn, $query);
+        ?>
+        <div class="main-right">
+            <h2 class="title-main-right">Đơn hàng của tôi</h2>
+            <div class="bag-order">
+                <table>
+                    <tr>
+                        <th>Sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Ngày đặt</th>
+                        <th>Trạng thái</th>
+                    </tr>
+                    <?php
+                        while($conn = mysqli_fetch_array($bag)){
+                            $productCost = $conn['quatityProductOrder'] * $conn['priceProductOrder'];
+                            $totalCost += $productCost;
+                    ?>
+                    <tr>
+                        <td><?php echo $conn['nameProductOrder'] ?></td>
+                        <td><?php echo $conn['priceProductOrder'] ?></td>
+                        <td><?php echo $conn['quatityProductOrder'] ?></td>
+                        <td><?php echo $conn['dateOrder'] ?></td>
+                        <td><?php $status = "Chưa rõ";
+                if ($conn['satusOrder'] == 1){
+                    $status = "Đang chờ được duyệt";
+                }else if ($conn['satusOrder'] == 2){
+                    $status = "Hoàn thành";
+                }else if ($conn['satusOrder'] == 3){
+                    $status = "Hủy";
+                }
+                echo  $status; ?></td>
+                    </tr>
+                    <?php
+                        }
+                    ?>
+                    <tr>
+                        <td colspan="4">Tổng</td>
+                        <td><?php echo $totalCost ?> vnđ</td>
+                    </tr>
+                </table>
+            </div>
         </div>
+        <?php
+            }
+        ?>
+        </div>
+
+
     </div>
     <!-- FOOTER -->
 

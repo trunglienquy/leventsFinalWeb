@@ -158,7 +158,6 @@
             </div>
         </div>
         <?php
-            require ("../sestion.php");
             if (!isset($_SESSION['codeOrder'])){
                 $_SESSION['codeOrder'] = 1;
             }

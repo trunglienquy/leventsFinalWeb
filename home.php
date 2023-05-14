@@ -39,31 +39,38 @@
     <!-- SEARCH-BOX -->
 
     <div class="search-box hide-search">
-        <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
-        <div class="search-buttons">
-            <input type="text" id="search-text">
-            <input type="submit" value="Search" id="search-btn" onclick="location.href='./search-result/search-result.html'">
+            <form action="./search-result/search-result.php" method="get">
+                <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
+                <div class="search-buttons">
+                    <input type="text" id="search-text" name="content">
+                    <input type="submit" value="Search" id="search-btn" name="searchBtn">
+                </div>
+                <div class="advance-search">
+                        <select name="categoryProduct" id="categories">
+                            <option value="0" class="col-op">--Loại sản phẩm--</option>
+                            <option value="1" class="col-op">Áo thun</option>
+                            <option value="2" class="col-op">Quần</option>
+                            <option value="3" class="col-op">Ba-lô</option>
+                            <option value="4" class="col-op">Áo khoác</option>
+                            <option value="5" class="col-op">Phụ kiện</option>
+                        </select>
+                        <select name="rangePrice" id="price">
+                            <option value="0" class="col-op">--Khoảng giá--</option>
+                            <option value="1" class="col-op">Dưới 300.000 vnđ</option>
+                            <option value="2" class="col-op">Từ 300.000 vnđ - 500.000 vnđ</option>
+                            <option value="3" class="col-op">Trên 500.000 vnđ</option>
+                        </select>
+                    </div>
+            </form>
         </div>
-        <div class="advance-search">
-            <select name="" id="categories">
-                <option value="default" selected disabled>Loại</option>
-                <option value="all" class="col-op">Tất cả</option>
-                <option value="new" class="col-op">Sản phẩm mới</option>
-                <option value="tee" class="col-op">Áo thun</option>
-                <option value="pant" class="col-op">Quần</option>
-                <option value="balo" class="col-op">Ba lô</option>
-                <option value="outwear" class="col-op">Áo khoác</option>
-                <option value="pk" class="col-op">Phụ kiện </option>
-            </select>
-            <select name="" id="price">
-                <option value="default" class="col-op">Giá</option>
-                <option value="100" class="col-op">Dưới 100.000 vnđ</option>
-                <option value="100+" class="col-op">Từ 200.000 vnđ - 500.000 vnđ</option>
-                <option value="100++" class="col-op">Trên 500.000 vnđ</option>
-            </select>
-            <button id="submitAdvance">Xác nhận</button>
-        </div>
-    </div>
+            <script>
+                const tagInput = document.getElementById('search-text');
+                const saveTagsBtn = document.getElementById('search-btn');
+                saveTagsBtn.addEventListener('click', () => {
+                    localStorage.setItem('tag', tagInput.value);
+                    // tagInput.value = '';
+                });
+            </script>
 
     <!-- MENU -->
 
