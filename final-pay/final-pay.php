@@ -158,7 +158,28 @@
             </div>
         </div>
         <?php
+            require ("../sestion.php");
+            if (!isset($_SESSION['codeOrder'])){
+                $_SESSION['codeOrder'] = 1;
+            }
+            $_SESSION['codeOrder']++;
+            $count = $_SESSION['codeOrder'];
+            $addressUser = $_GET['address-user'];
+            $methodPayment = $_GET['banking'];
+            $method = 0;
+            if ($methodPayment == 'pt1'){
+                $method = 2;
+            }
+            else if ($methodPayment == 'pt2'){
+                $method = 1;
+            }
             $totalFinal = 0;
+            foreach($_SESSION['cart1'] as $cart_item){
+                $total = $cart_item['amount'] * $cart_item['pricePr'];
+                $totalFinal += $total;
+            }
+            $queryOrder = "INSERT INTO orderproduct VALUES($count, '{$_SESSION['name-info']}', '{$_SESSION['name-email']}', '{$_SESSION['name-numberphone']}','$addressUser',$totalFinal,'$method','{$_SESSION['name-id']}')";
+            mysqli_query($conn, $queryOrder);
         ?>
         <?php
             if (isset($_SESSION['cart1'])){
@@ -170,8 +191,8 @@
                     foreach($_SESSION['cart1'] as $cart_item){
                         $total = $cart_item['amount'] * $cart_item['pricePr'];
                         $totalFinal += $total;
-                        // $date_time = date("d-m-y");
-                        $query = "INSERT INTO orderproduct VALUES('','LVT{$_SESSION['name-id']}', '{$_SESSION['name-id']}', '{$cart_item['namePr']}', '{$cart_item['imagePr']}', '{$cart_item['pricePr']}', '{$cart_item['amount']}', (NOW()), 1)";
+                        $date_time = date("d-m-y");
+                        $query = "INSERT INTO orderproductdetail VALUES('','{$cart_item['namePr']}','{$cart_item['pricePr']}','{$cart_item['imagePr']}', '{$cart_item['amount']}', (NOW()), 1, $count)";
                         mysqli_query($conn, $query);
                 ?>
                 <div class="left-pr-final">

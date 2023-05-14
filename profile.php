@@ -183,28 +183,26 @@
                 <table>
                     <tr>
                         <th>Mã đơn hàng</th>
-                        <th>Ngày đặt</th>
-                        <th>Tên sản phẩm</th>
-                        <th>Số lượng</th>
+                        <th>Địa chỉ</th>
                         <th>Thành tiền</th>
-                        <th>Trạng thái</th>
+                        <th>Phương thức thanh toán</th>
+                        <th>Chi tieets</th>
                     </tr>
                     <tr>
                         <td><?php echo $conn['idOrder'] ?></td>
-                        <td><?php echo $conn['dateOrder'] ?></td>
-                        <td><?php echo $conn['nameProductOrder'] ?></td>
-                        <td><?php echo $conn['quanityProductOrder'] ?></td>
-                        <td><?php echo $conn['priceProductOrder'] ?></td>
+                        <td><?php echo $conn['addressCustomer'] ?></td>
+                        <td><?php echo $conn['totalPayment'] ?></td>
+                        <td><?php echo $conn['menthodPayment'] ?></td>
                         <td>
                             <?php 
                                 $noti_check = "Chưa rõ";
-                                if($conn['status'] == 1){
+                                if($conn['statusOrder'] == 1){
                                     $noti_check = "Đang chờ được duyệt";
                                 }
-                                else if ($conn['status'] == 2){
+                                else if ($conn['statusOrder'] == 2){
                                     $noti_check = "Hoàn thành";
                                 }
-                                else if ($conn['status'] == 3){
+                                else if ($conn['statusOrder'] == 3){
                                     $noti_check = "Hủy";
                                 }
                                 echo $noti_check;

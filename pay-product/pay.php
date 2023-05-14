@@ -137,22 +137,31 @@
     <div class="container-pay">
         <div class="information-user">
             <form action="../final-pay/final-pay.php" method="get">
+                <?php
+                    if(isset($_SESSION['test']) && $_SESSION['test'] != ""){
+                ?>
                 <h3 class="title-pay col">THÔNG TIN GIAO HÀNG</h3>
                 <div class="col-IFU-1 col">
-                    <input type="text" name="name-user" placeholder="Họ và tên">
+                    <input type="text" name="name-user" placeholder="Họ và tên" value="<?php echo $_SESSION['name-info'] ?>">
                 </div>
                 <div class="col-IFU-2 col">
-                    <input type="email" name="email-user" id="" placeholder="Email">
-                    <input type="tel" name="tel-user" id="" placeholder="Số điện thoại">
+                    <input type="email" name="email-user" id="" placeholder="Email" value="<?php echo $_SESSION['name-email'] ?>">
+                    <input type="tel" name="tel-user" id="" placeholder="Số điện thoại" value="<?php echo $_SESSION['name-numberphone'] ?>">
                 </div>
                 <div class="col-IFU-3 col">
                     <input type="date" name="date-user" id="" class="date-user" placeholder="Ngày sinh">
                     <input type="text" name="address-user" id="" placeholder="Địa chỉ" class="address-user">
                 </div>
                 <div class="col-IFU-4 col">
-                    <input type="text" name="address-detail-user" id="" class="address-detail-user" placeholder="Thành phố">
-                    <input type="text" name="address-detail-user" id="" class="address-detail-user" placeholder="Quận/Huyện">
-                    <input type="text" name="address-detail-user" id="" class="address-detail-user" placeholder="Phường">
+                    <select name="city" id="province" class="address-detail-user">
+                        <option value="">--- Chọn Tỉnh/Thành Phố ---</option>
+                    </select>
+                    <select name="city2" id="district" class="address-detail-user">
+                    <option  value="">-- Chọn Quận/Huyện --</option>
+                    </select>
+                    <select name="city3" id="ward" class="address-detail-user">
+                    <option   value="">-- Chọn Phường/Xã --</option>
+                    </select>
                 </div>
                 <div class="confirm-product-pay col">
                     <p class="continue-pay">
@@ -175,7 +184,7 @@
                     </div>
                     <div class="sub-cate-pay-1">
                         <div class="check-pay col-1">
-                            <input type="checkbox" name="cod" id="sub-cates-2" value="pt2">
+                            <input type="checkbox" name="banking" id="sub-cates-2" value="pt2">
                             <p>Thanh toán khi nhận hàng</p>
                         </div>
                         <p class="sub-cates col-1 hide-cates sub-cates-2" >
@@ -183,6 +192,9 @@
                         </p>
                     </div>
                 </div>
+                <?php
+                    }
+                ?>
             </form>
         </div>
         <?php
@@ -336,6 +348,8 @@
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="../js/addCard.js"></script>
     <script src="../js/searchMain.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="module" src="./js/main.js"></script>
 </body>
 </html>
