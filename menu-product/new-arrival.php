@@ -25,11 +25,18 @@
         <div class="navbar-icon">
             <ul class="navbar-icon_lists">
                 <li class="navbar-icon_item navbar-icon_search"><a href="#"><ion-icon name="search-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item navbar-icon_bag"><a href="#"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item"><a href="../login.html"><ion-icon name="person-outline"></ion-icon></a></li>
+                <li class="navbar-icon_item navbar-icon_bag"><a href="../detail-product/order-product.php"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
+                <?php
+                include '../login.php';
+                    if (isset($_SESSION['test']) && ($_SESSION['test'] != "")){
+                        echo '<li class="navbar-icon_item"><a href="../profile.php"><ion-icon name="person-outline"></ion-icon></a></li>';
+                    }
+                    else{
+                        echo '<li class="navbar-icon_item"><a href="../login.html"><ion-icon name="person-outline"></ion-icon></a></li>';
+                    }
+                ?>
             </ul>
         </div>
-        <!-- search-box -->
         <div class="search-box hide-search">
             <form action="../search-result/search-result.php" method="get">
                 <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
@@ -63,6 +70,7 @@
                     // tagInput.value = '';
                 });
             </script>
+        </div>
     </div>
 
     <!-- SEARCH-BOX -->
@@ -85,53 +93,25 @@
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-lists">
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/all-product.html">Tất cả</a>
+                            <a href="./all-product.php">Tất cả</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/new-arrival.html">New Arrival</a>
+                            <a href="./new-arrival.php">Sản phẩm mới</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/tee-shirt.html">Áo thun</a>
+                            <a href="./tee-shirt.php">Áo thun</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/pant.html">Quần</a>
+                            <a href="./pant.php">Quần</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/balo.html">Ba-lo</a>
+                            <a href="./balo.php">Ba-lo</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/outwear.html">Outwear</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="../menu-product/pk.html">Phụ kiện</a>
+                            <a href="./outwear.php">Áo khoác</a>
                         </li>
                     </ul>
                 </div>
-                <!-- <div class="dropdown-menu-mobile">
-                    <ul class="dropdown-menu-lists">
-                        <li class="dropdown-menu-item">
-                            <a href="./all-product.html">Tất cả</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">New Arrival</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Áo thun</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Quần</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Ba-lo</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Outwear</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Phụ kiện</a>
-                        </li>
-                    </ul>
-                </div> -->
             </li>
             <li class="navbar-menu_item navbar-menu_item-underline navbar-menu_item-active"><a href="../navbar-sale-off/sale-off.html">Sale-off</a></li>
             <li class="navbar-menu_item navbar-menu_item-underline"><a href="../navbar-collection/collection.html">Bộ sưu tập</a></li>

@@ -296,6 +296,74 @@ table{
     border-collapse: collapse;
 }
 
+.address-col{
+    display: flex;
+    width: 1000px;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.tool-right-address{
+    margin-bottom: 20px;
+}
+.editAddress{
+    margin-right: 40px;
+}
+.hideFormAddress{
+    display: none;
+}
+
+.form-register-address{
+    width: 1000px;
+    height: 400px;
+    background-color: rgb(230, 230, 230);
+    padding: 40px;
+    position: absolute;
+    top: 0;
+    transform: translateY(50%);
+}
+.form-register-address h2{
+    text-align: center;
+    margin-bottom: 15px;
+}
+.form-register-address input{
+    margin-bottom: 25px;
+    border: none;
+    border-bottom: 1px solid #000;
+    padding: 5px;
+    outline: none;
+    background-color: rgb(230, 230, 230);
+}
+.closeForm{
+    text-align: right;
+    cursor: pointer;
+}
+.form-register-address .btnSubmitForm{
+    width: 200px;
+    border: none;
+    margin-top: 30px;
+    background-color: #000;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+}
+.cityAndcity{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cityAndcity select{
+    border: none;
+    border-bottom: 1px solid #000;
+    width: 300px;
+    background-color: rgb(230, 230, 230);
+    outline: none;
+
+}
+.detail-customer-register{
+    display: flex;
+    flex-direction: column;
+}
+
 /* FOOTER */
 
 footer{

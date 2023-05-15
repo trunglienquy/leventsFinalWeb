@@ -22,7 +22,7 @@
         <div class="navbar-icon">
             <ul class="navbar-icon_lists">
                 <li class="navbar-icon_item navbar-icon_search"><a href="#"><ion-icon name="search-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item navbar-icon_bag"><a href="#"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
+                <li class="navbar-icon_item navbar-icon_bag"><a href="./detail-product/order-product.php"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
                 <?php
                 include 'login.php';
                     if (isset($_SESSION['test']) && ($_SESSION['test'] != "")){
@@ -99,9 +99,6 @@
                         <li class="dropdown-menu-item">
                             <a href="./menu-product/outwear.php">Áo khoác</a>
                         </li>
-                        <li class="dropdown-menu-item">
-                            <a href="./menu-product/pk.html">Phụ kiện</a>
-                        </li>
                     </ul>
                 </div>
             </li>
@@ -125,43 +122,31 @@
 
     <!-- PRODUCT -->
 
+    <?php
+        $product = mysqli_query($conn, "SELECT * FROM `allproduct` ORDER BY `idProduct` ASC LIMIT 12");
+    ?>
+
     <h2 class="name-intro">BỘ SƯU TẬP MỚI</h2>
     <div class="product">
-        <?php for ($i = 0; $i < 12; $i++) { ?>
-        <div class="product-row">
-            <a href="./detail-product/tee-shirt-1.html">
+    <?php
+        while ($conn = mysqli_fetch_array($product)) {
+        ?>
+            <div class="product-row">
+            <a href="../detail-product/detail-product.php?id=<?= $conn['idProduct'] ?>">
                 <div class="product-item">
-                    <img src="./img/pr1F.jpg" alt="" class="product-item-back">
-                    <img src="./img/pr1.png" alt="" class="product-item-font">
-                    <h3 class="name-product-item">Levents - TEE SHIRT NEW</h3>
-                    <h3 class="price-product-item">395,000 vnđ</h3>
+                    <img src="./<?= $conn['imageFrontProduct'] ?>" alt="" class="product-item-back">
+                    <img src="./<?= $conn['imageAfterProduct'] ?>" alt="" class="product-item-font">
+                    <h3 class="name-product-item"><?= $conn['nameProduct'] ?></h3>
+                    <h3 class="price-product-item"><?= $conn['priceProduct'] ?></h3>
                 </div>
             </a>
         </div>
-        <?php } ?>
+        <?php
+        }
+        ?>
     </div>
     <div class="see-more" onclick="">
-        <a href="./menu-product/all-product.html" class="see-more-title">Xem Thêm</a>
-    </div>
-
-    <!-- ADD-TO-CARD -->
-    <div class="container-add-to-cart hide-add-to-card" id="show-itemBag">
-        <div class="title-atc">
-            <h3 class="name-cart">Giỏ Hàng</h3>
-            <p class="close-atc">Đóng</p>
-        </div>
-        <div class="notification-bag">
-            <p class="information-notification">Hiện tại bạn không có đơn hàng nào</p>
-        </div>
-        <div class="atc-bag"></div>
-        <div class="pay-product">
-            <button type="submit" class="pay-btn">Thanh toán</button>
-            <p class="notification-pay hide-notification-pay"> <i>Bạn chưa có sản phẩm nào trong giỏ hàng!</i> </p>
-        </div>
-        <div class="total-atc">
-            <h3 class="needPay"></h3>
-            <h3 class="total-product">Tổng: &nbsp;</h3>
-        </div>
+        <a href="./menu-product/all-product.php" class="see-more-title">Xem Thêm</a>
     </div>
 
 

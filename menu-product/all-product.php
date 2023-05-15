@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style-all-product.css">
     <link rel="stylesheet" href="../js/product-main.js">
-    <title>Sản phẩm mới - Levents</title>
+    <title>Tất cả các sản phẩm - Levents</title>
 </head>
 
 <body>
@@ -25,19 +25,43 @@
         <div class="navbar-icon">
             <ul class="navbar-icon_lists">
                 <li class="navbar-icon_item navbar-icon_search"><a href="#"><ion-icon name="search-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item navbar-icon_bag"><a href="#"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item"><a href="../login.html"><ion-icon name="person-outline"></ion-icon></a></li>
+                <li class="navbar-icon_item navbar-icon_bag"><a href="../detail-product/order-product.php"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
+                <?php
+                include '../login.php';
+                    if (isset($_SESSION['test']) && ($_SESSION['test'] != "")){
+                        echo '<li class="navbar-icon_item"><a href="../profile.php"><ion-icon name="person-outline"></ion-icon></a></li>';
+                    }
+                    else{
+                        echo '<li class="navbar-icon_item"><a href="../login.html"><ion-icon name="person-outline"></ion-icon></a></li>';
+                    }
+                ?>
             </ul>
         </div>
         <div class="search-box hide-search">
-            <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
-            <div class="search-buttons">
-                <form action="../search-result/search-result.php" method="get">
+            <form action="../search-result/search-result.php" method="get">
+                <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
+                <div class="search-buttons">
                     <input type="text" id="search-text" name="content">
                     <input type="submit" value="Search" id="search-btn" name="searchBtn">
-                </form>
-            </div>
-
+                </div>
+                <div class="advance-search">
+                        <select name="categoryProduct" id="categories">
+                            <option value="0" class="col-op">--Loại sản phẩm--</option>
+                            <option value="1" class="col-op">Áo thun</option>
+                            <option value="2" class="col-op">Quần</option>
+                            <option value="3" class="col-op">Ba-lô</option>
+                            <option value="4" class="col-op">Áo khoác</option>
+                            <option value="5" class="col-op">Phụ kiện</option>
+                        </select>
+                        <select name="rangePrice" id="price">
+                            <option value="0" class="col-op">--Khoảng giá--</option>
+                            <option value="1" class="col-op">Dưới 300.000 vnđ</option>
+                            <option value="2" class="col-op">Từ 300.000 vnđ - 500.000 vnđ</option>
+                            <option value="3" class="col-op">Trên 500.000 vnđ</option>
+                        </select>
+                    </div>
+            </form>
+        </div>
             <script>
                 const tagInput = document.getElementById('search-text');
                 const saveTagsBtn = document.getElementById('search-btn');
@@ -46,36 +70,18 @@
                     // tagInput.value = '';
                 });
             </script>
-
-            <div class="advance-search">
-                <form action="../search-result/search-result.php" method="get">
-                    <select name="categoryProduct" id="categories">
-                        <option value="1" class="col-op">Áo thun</option>
-                        <option value="2" class="col-op">Quần</option>
-                        <option value="3" class="col-op">Ba-lô</option>
-                        <option value="4" class="col-op">Áo khoác</option>
-                        <option value="5" class="col-op">Phụ kiện</option>
-                    </select>
-                    <select name="rangePrice" id="price">
-                        <option value="1" class="col-op">Dưới 300.000 vnđ</option>
-                        <option value="2" class="col-op">Từ 300.000 vnđ - 500.000 vnđ</option>
-                        <option value="3" class="col-op">Trên 500.000 vnđ</option>
-                    </select>
-                    <input type="submit" name="btnConfirmFind" value="Xác nhận" id="submitAdvance">
-                </form>
-            </div>
         </div>
     </div>
 
     <!-- SEARCH-BOX -->
 
-    <div class="search-box hide-search">
+    <!-- <div class="search-box hide-search">
         <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
         <div class="search-buttons">
             <input type="text" id="search-text">
-            <input type="submit" value="Search" id="search-btn" onclick="location.href='../search-result/search-result.html'">
+            <input type="submit" value="Search" id="search-btn" onclick="location.href='./search-result/search-result.html'">
         </div>
-    </div>
+    </div> -->
 
     <!-- MENU -->
 
@@ -87,53 +93,25 @@
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-lists">
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/all-product.html">Tất cả</a>
+                            <a href="./all-product.php">Tất cả</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/new-arrival.html">New Arrival</a>
+                            <a href="./new-arrival.php">Sản phẩm mới</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/tee-shirt.html">Áo thun</a>
+                            <a href="./tee-shirt.php">Áo thun</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/pant.html">Quần</a>
+                            <a href="./pant.php">Quần</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/balo.html">Ba-lo</a>
+                            <a href="./balo.php">Ba-lo</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/outwear.html">Outwear</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="../menu-product/pk.html">Phụ kiện</a>
+                            <a href="./outwear.php">Áo khoác</a>
                         </li>
                     </ul>
                 </div>
-                <!-- <div class="dropdown-menu-mobile">
-                    <ul class="dropdown-menu-lists">
-                        <li class="dropdown-menu-item">
-                            <a href="./all-product.html">Tất cả</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">New Arrival</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Áo thun</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Quần</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Ba-lo</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Outwear</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Phụ kiện</a>
-                        </li>
-                    </ul>
-                </div> -->
             </li>
             <li class="navbar-menu_item navbar-menu_item-underline navbar-menu_item-active"><a href="../navbar-sale-off/sale-off.html">Sale-off</a></li>
             <li class="navbar-menu_item navbar-menu_item-underline"><a href="../navbar-collection/collection.html">Bộ sưu tập</a></li>
@@ -222,26 +200,6 @@
         }
         ?>
 
-    </div>
-    <!-- ADD-TO-CARD -->
-
-    <div class="container-add-to-cart hide-add-to-card" id="show-itemBag">
-        <div class="title-atc">
-            <h3 class="name-cart">Giỏ Hàng</h3>
-            <p class="close-atc">Đóng</p>
-        </div>
-        <div class="notification-bag">
-            <p class="information-notification">Hiện tại bạn không có đơn hàng nào</p>
-        </div>
-        <div class="atc-bag"></div>
-        <div class="pay-product">
-            <button type="submit" class="pay-btn">Thanh toán</button>
-            <p class="notification-pay hide-notification-pay"> <i>Bạn chưa có sản phẩm nào trong giỏ hàng!</i> </p>
-        </div>
-        <div class="total-atc">
-            <h3 class="needPay"></h3>
-            <h3 class="total-product">Tổng: &nbsp;</h3>
-        </div>
     </div>
 
     <!-- PAGING -->

@@ -161,10 +161,51 @@
             if (isset($_GET['profile']) && $_GET['profile'] == 2){
         ?>
         <div class="main-right">
-            <h2 class="title-main-right">Thông tin cá nhân</h2>
+            <h2 class="title-main-right">Sổ địa chỉ</h2>
             <div class="col-main-right">
-                <h3 class="col1">Ngày sinh</h3>
-                <p class="col1"><?php echo $_SESSION['name-birthday']?></p>
+                <button class="btnRegisterAddressCustomer">Thêm địa chỉ mới</button>
+                <div class="address-col">
+                    <div class="left-address">
+                        <p>Họ và tên: &nbsp; <strong style="font-size: 20px;">KKKK</strong> </p>
+                        <p>Số điện thoại: &nbsp; <strong style="font-size: 20px;">0364781722</strong></p>
+                        <p>Địa chỉ: &nbsp; <strong>65/4a, mỹ hòa 3</strong>
+                                            <strong>fds</strong>
+                                            <strong>dsa</strong>
+                                            <strong>dá</strong>
+                        </p>
+                    </div>
+                    <div class="right-address">
+                        <div class="tool-right-address">
+                            <a href="edit" class="editAddress">Chỉnh sửa</a>
+                            <a href="" class="removeAddress">Xóa</a>
+                        </div>
+                        <a href="">Thiết lập mặc định</a>
+                    </div>
+                </div>
+            </div>
+            <div class="form-register-address hideFormAddress">
+                <!-- <form action="./profile.php?idCustomer<?php echo $_SESSION['name-id'] ?>" method="post"> -->
+                <form action="./test.php" method="post">
+                    <p class="closeForm">Đóng</p>
+                    <h2>THÊM ĐỊA CHỈ GIAO HÀNG</h2>
+                    <div class="detail-customer-register">
+                        <input type="text" name="nameCustomer" placeholder="Họ tên">
+                        <input type="tel" name="telephoneCustomer" id="" placeholder="Số điện thoại">
+                        <input type="text" name="addressCustomer" id="" placeholder="Địa chỉ">
+                        <div class="cityAndcity">
+                            <select name="city" id="province" class="address-detail-user">
+                                <option value="">--- Chọn Tỉnh/Thành Phố ---</option>
+                            </select>
+                            <select name="city2" id="district" class="address-detail-user">
+                                <option  value="">-- Chọn Quận/Huyện --</option>
+                            </select>
+                            <select name="city3" id="ward" class="address-detail-user">
+                                <option   value="">-- Chọn Phường/Xã --</option>
+                            </select>
+                        </div>
+                        <input type="submit" value="Thêm mới" class="btnSubmitForm" name="btnSubmitFormRegister">
+                </form>
+                </div>
             </div>
         </div>
         <?php
@@ -417,7 +458,11 @@
     </footer>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="./js/addCard.js"></script>
     <script src="./js/searchMain.js"></script>
+    <script src="./pay-product/js/main.js"></script>
+    <script src="./js/mainProfile.js"></script>
 </body>
 </html>

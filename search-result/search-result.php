@@ -22,44 +22,54 @@
         <div class="menu-mobile-close menu-mobile">
             <ion-icon name="close-outline"></ion-icon>
         </div>
-        <div class="navbar-logo"><a href="../home.html"><img src="../img/logo.png" alt=""></a></div>
+        <div class="navbar-logo"><a href="../home.php"><img src="../img/logo.png" alt=""></a></div>
         <div class="navbar-icon">
             <ul class="navbar-icon_lists">
                 <li class="navbar-icon_item navbar-icon_search"><a href="#"><ion-icon name="search-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item navbar-icon_bag"><a href="#"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
-                <li class="navbar-icon_item"><a href="../login.html"><ion-icon name="person-outline"></ion-icon></a></li>
+                <li class="navbar-icon_item navbar-icon_bag"><a href="../detail-product/order-product.php"><ion-icon name="bag-handle-outline"></ion-icon></a></li>
+                <?php
+                    if (isset($_SESSION['test']) && ($_SESSION['test'] != "")){
+                        echo '<li class="navbar-icon_item"><a href="../profile.php"><ion-icon name="person-outline"></ion-icon></a></li>';
+                    }
+                    else{
+                        echo '<li class="navbar-icon_item"><a href="../login.html"><ion-icon name="person-outline"></ion-icon></a></li>';
+                    }
+                ?>
             </ul>
         </div>
-    </div>
-
-    <!-- SEARCH-BOX -->
-
-    <div class="search-box hide-search">
-        <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
-        <div class="search-buttons">
-            <form action="../search-result/search-result.php" method="post">
-                <input type="text" id="search-text" name="content">
-                <input type="submit" value="Search" id="search-btn" name="searchBtn">
+        <div class="search-box hide-search">
+            <form action="../search-result/search-result.php" method="get">
+                <div class="search-close"><ion-icon name="close-outline"></ion-icon></div>
+                <div class="search-buttons">
+                    <input type="text" id="search-text" name="content">
+                    <input type="submit" value="Search" id="search-btn" name="searchBtn">
+                </div>
+                <div class="advance-search">
+                        <select name="categoryProduct" id="categories">
+                            <option value="0" class="col-op">--Loại sản phẩm--</option>
+                            <option value="1" class="col-op">Áo thun</option>
+                            <option value="2" class="col-op">Quần</option>
+                            <option value="3" class="col-op">Ba-lô</option>
+                            <option value="4" class="col-op">Áo khoác</option>
+                            <option value="5" class="col-op">Phụ kiện</option>
+                        </select>
+                        <select name="rangePrice" id="price">
+                            <option value="0" class="col-op">--Khoảng giá--</option>
+                            <option value="1" class="col-op">Dưới 300.000 vnđ</option>
+                            <option value="2" class="col-op">Từ 300.000 vnđ - 500.000 vnđ</option>
+                            <option value="3" class="col-op">Trên 500.000 vnđ</option>
+                        </select>
+                    </div>
             </form>
         </div>
-        <div class="advance-search">
-            <select name="" id="categories">
-                <option value="default" selected disabled>Loại</option>
-                <option value="all" class="col-op">Tất cả</option>
-                <option value="new" class="col-op">Sản phẩm mới</option>
-                <option value="tee" class="col-op">Áo thun</option>
-                <option value="pant" class="col-op">Quần</option>
-                <option value="balo" class="col-op">Ba lô</option>
-                <option value="outwear" class="col-op">Áo khoác</option>
-                <option value="pk" class="col-op">Phụ kiện </option>
-            </select>
-            <select name="" id="price">
-                <option value="default" class="col-op">Giá</option>
-                <option value="100" class="col-op">Dưới 100.000 vnđ</option>
-                <option value="100+" class="col-op">Từ 200.000 vnđ - 500.000 vnđ</option>
-                <option value="100++" class="col-op">Trên 500.000 vnđ</option>
-            </select>
-            <button id="submitAdvance">Xác nhận</button>
+            <script>
+                const tagInput = document.getElementById('search-text');
+                const saveTagsBtn = document.getElementById('search-btn');
+                saveTagsBtn.addEventListener('click', () => {
+                    localStorage.setItem('tag', tagInput.value);
+                    // tagInput.value = '';
+                });
+            </script>
         </div>
     </div>
 
@@ -73,53 +83,25 @@
                 <div class="dropdown-menu">
                     <ul class="dropdown-menu-lists">
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/all-product.html">Tất cả</a>
+                            <a href="../menu-product/all-product.php">Tất cả</a>
                         </li>
                         <li class="dropdown-menu-item">
                             <a href="../menu-product/new-arrival.php">Sản phẩm mới</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/tee-shirt.html">Áo thun</a>
+                            <a href="../menu-product/tee-shirt.php">Áo thun</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/pant.html">Quần</a>
+                            <a href="../menu-product/pant.php">Quần</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/balo.html">Ba-lo</a>
+                            <a href="../menu-product/balo.php">Ba-lo</a>
                         </li>
                         <li class="dropdown-menu-item">
-                            <a href="../menu-product/outwear.html">Áo khoác</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="../menu-product/pk.html">Phụ kiện</a>
+                            <a href="../menu-product/outwear.php">Áo khoác</a>
                         </li>
                     </ul>
                 </div>
-                <!-- <div class="dropdown-menu-mobile">
-                    <ul class="dropdown-menu-lists">
-                        <li class="dropdown-menu-item">
-                            <a href="./all-product.html">Tất cả</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">New Arrival</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Áo thun</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Quần</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Ba-lo</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Outwear</a>
-                        </li>
-                        <li class="dropdown-menu-item">
-                            <a href="#">Phụ kiện</a>
-                        </li>
-                    </ul>
-                </div> -->
             </li>
             <li class="navbar-menu_item navbar-menu_item-underline navbar-menu_item-active"><a href="../navbar-sale-off/sale-off.html">Sale-off</a></li>
             <li class="navbar-menu_item navbar-menu_item-underline"><a href="../navbar-collection/collection.html">Bộ sưu tập</a></li>
